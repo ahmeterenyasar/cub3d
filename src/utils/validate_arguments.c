@@ -41,21 +41,18 @@ int	validate_file_access(char *filename)
 
 int	validate_arguments(int argc, char **argv)
 {
-	/* Check argument count */
 	if (argc != 2)
 	{
 		print_error(ERR_USAGE);
 		return (0);
 	}
-	
-	/* Check file extension */
+
 	if (!validate_file_extension(argv[1]))
 	{
 		print_error(ERR_FILE_EXT);
 		return (0);
 	}
-	
-	/* Check file accessibility */
+
 	if (!validate_file_access(argv[1]))
 	{
 		print_error(ERR_FILE_OPEN);
