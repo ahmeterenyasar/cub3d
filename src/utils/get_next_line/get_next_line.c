@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 11:28:43 by ayasar            #+#    #+#             */
-/*   Updated: 2024/12/02 13:18:01 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/09 17:59:46 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*ft_save(char *save)
 		free(save);
 		return (NULL);
 	}
-	s = (char *)malloc(sizeof(char) * (ft_strlen(save) - i + 1));
+	s = (char *)malloc(sizeof(char) * (ft_gnl_strlen(save) - i + 1));
 	if (!s)
 		return (NULL);
 	i++;
@@ -76,7 +76,7 @@ char	*ft_read_and_save(int fd, char *save)
 	if (!buffer)
 		return (NULL);
 	read_bytes = 1;
-	while (!ft_strchr(save, '\n') && read_bytes != 0)
+	while (!ft_gnl_strchr(save, '\n') && read_bytes != 0)
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (read_bytes == -1)
@@ -85,7 +85,7 @@ char	*ft_read_and_save(int fd, char *save)
 			return (NULL);
 		}
 		buffer[read_bytes] = '\0';
-		save = ft_strjoin(save, buffer);
+		save = ft_gnl_strjoin(save, buffer);
 	}
 	free(buffer);
 	return (save);

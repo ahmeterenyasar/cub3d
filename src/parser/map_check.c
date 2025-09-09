@@ -1,37 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/09 10:55:53 by ayasar            #+#    #+#             */
+/*   Created: 2025/09/09 15:55:28 by ayasar            #+#    #+#             */
 /*   Updated: 2025/09/09 17:59:45 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub3d.h"
-
-int	main(int argc, char **argv)
-{
-	t_map *map;
-	
-	map = malloc(sizeof(t_map));
-	if (!map)
-		return (EXIT_FAILURE);
-	init_data(map);
-	/* Validate arguments and file */
-	if (!validate_arguments(argc, argv))
-		return (EXIT_FAILURE);
-	parser(argv, map);
-	/* TODO: Parse the .cub file */
-	/* TODO: Initialize graphics */
-	/* TODO: Start game loop */
-	
-	/* Clean up memory */
-	if (map->player)
-		free(map->player);
-	free(map);
-	
-	return (EXIT_SUCCESS);
-}
+#include "../../include/cub3d.h"

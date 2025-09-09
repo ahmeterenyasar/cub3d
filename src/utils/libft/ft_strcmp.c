@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/01 11:29:15 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/09 17:59:46 by ayasar           ###   ########.fr       */
+/*   Created: 2025/09/09 15:34:10 by ayasar            #+#    #+#             */
+/*   Updated: 2025/09/09 15:34:39 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	unsigned char	*us1;
+	unsigned char	*us2;
 
-# include <stdlib.h>
-# include <unistd.h>
-
-size_t	ft_gnl_strlen(char *str);
-char	*ft_gnl_strchr(char *s, int c);
-char	*ft_gnl_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
-char	*ft_set_line(char *save);
-char	*ft_save(char *save);
-char	*ft_read_and_save(int fd, char *save);
-
-#endif
+	if (!s1 && !s2)
+		return (0);
+	if (!s1)
+		return (-1);
+	if (!s2)
+		return (1);
+	us1 = (unsigned char *)s1;
+	us2 = (unsigned char *)s2;
+	while (*us1 && (*us1 == *us2))
+	{
+		us1++;
+		us2++;
+	}
+	return (*us1 - *us2);
+}

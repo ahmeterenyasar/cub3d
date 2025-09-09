@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:55:58 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/09 10:55:59 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/09 15:33:54 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_error(char *message)
 {
 	if (message)
-		write(STDERR_FILENO, message, strlen(message));
+		write(STDERR_FILENO, message, ft_strlen(message));
 	write(STDERR_FILENO, "\n", 1);
 }
 
@@ -26,11 +26,11 @@ int	validate_file_extension(char *filename)
 	if (!filename)
 		return (0);
 	
-	len = strlen(filename);
+	len = ft_strlen(filename);
 	if (len < 5)
 		return (0);
 	
-	if (strcmp(filename + len - 4, ".cub") != 0)
+	if (ft_strcmp(filename + len - 4, ".cub") != 0)
 		return (0);
 	
 	return (1);

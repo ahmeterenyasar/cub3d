@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayasar <ayasar@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:27:30 by ayasar            #+#    #+#             */
-/*   Updated: 2024/10/27 14:51:13 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/09 15:35:37 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
+
+int	ft_strcmp(const char *s1, const char *s2);
 
 #endif

@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/01 15:38:44 by ayasar            #+#    #+#             */
+/*   Created: 2025/09/09 15:50:36 by ayasar            #+#    #+#             */
 /*   Updated: 2025/09/09 17:59:46 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#include "../../include/cub3d.h"
 
-# ifndef OPEN_MAX
-#  define OPEN_MAX 1024
-# endif
+void init_data(t_map *map)
+{
+    map->map_copy = NULL;
+    map->map_line = NULL;
+    map->map_height = 0;
+    map->map_width = 0;
+    map->player = malloc(sizeof(t_player));
+    if (map->player)
+        init_player(map->player);
+}
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
 
-# include <stdlib.h>
-# include <unistd.h>
+void init_player(t_player *player)
+{
+    player->player_x = 0;
+    player->player_y = 0;
+    player->rot_x = 0;
+    player->rot_y = 0;
+}
 
-size_t	ft_gnl_strlen(char *str);
-char	*ft_gnl_strchr(char *s, int c);
-char	*ft_gnl_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
-char	*ft_set_line(char *save);
-char	*ft_save(char *save);
-char	*ft_read_and_save(int fd, char *save);
+// void init_img(t_image *image)
+// {
 
-#endif
+// }
+
