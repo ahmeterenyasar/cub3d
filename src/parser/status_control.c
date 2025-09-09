@@ -24,9 +24,10 @@ void take_texture_path(char **path, char **line)
         free(line[i--]);
     if(i != 2 || *path)
         print_error(INVALID_TEXTURE_LINE); // free gelcek mi?
-    *path = ft_strjoin(path, line[1]);
-    if(path[0][ft_strlen_for_map(*path)] == '\n')
+    *path = ft_strjoin(*path, line[1]);
+    if (path[0][ft_strlen_for_map(*path)] == '\n')
         path[0][ft_strlen_for_map(*path)] = '\0';
+    
 }
 
 
@@ -41,11 +42,11 @@ int status_control(t_map *map, char *map_line)
         if(ft_strncmp(map_line, "NO", 2) == 0)
             take_texture_path(&map->img[0].path, ft_split(map_line, ' '));
         else if(ft_strncmp(map_line, "SO", 2) == 0)
-            take_texture_path(map->img[1].path, ft_split(map_line, ' '));
+            take_texture_path(&map->img[1].path, ft_split(map_line, ' '));
         else if(ft_strncmp(map_line, "WE", 2) == 0)
-            take_texture_path(map->img[2].path, ft_split(map_line, ' '));
+            take_texture_path(&map->img[2].path, ft_split(map_line, ' '));
         else if(ft_strncmp(map_line, "EA", 2) == 0)
-            take_texture_path(map->img[3].path, ft_split(map_line, ' '));
+            take_texture_path(&map->img[3].path, ft_split(map_line, ' '));
         // else if (ft_strncmp(map_line, "F", 1) == 0)
         // /*
         //     rgb

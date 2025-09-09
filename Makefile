@@ -31,6 +31,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 # Source files
 SRCS = main.c \
        $(SRC_DIR)/utils/validate_arguments.c \
+       $(SRC_DIR)/utils/utils.c \
 	   $(SRC_DIR)/parser/parser.c \
 	   $(SRC_DIR)/parser/init_data.c \
 	   $(SRC_DIR)/parser/status_control.c \
