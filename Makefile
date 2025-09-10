@@ -35,6 +35,7 @@ SRCS = main.c \
 	   $(SRC_DIR)/parser/parser.c \
 	   $(SRC_DIR)/parser/init_data.c \
 	   $(SRC_DIR)/parser/status_control.c \
+	   $(SRC_DIR)/parser/map_check.c \
 
 # Get Next Line files
 GNL_SRCS = $(GNL_DIR)/get_next_line.c \

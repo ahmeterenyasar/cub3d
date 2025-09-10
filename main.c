@@ -23,8 +23,11 @@ int	main(int argc, char **argv)
 	/* Validate arguments and file */
 	if (!validate_arguments(argc, argv))
 		return (EXIT_FAILURE);
+
+	/* Parse the .cub file */
 	parser(argv, map);
-	/* TODO: Parse the .cub file */
+
+	
 	/* TODO: Initialize graphics */
 	/* TODO: Start game loop */
 	

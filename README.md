@@ -15,7 +15,7 @@ make
 ## Status
 
 ### To-Do 🔵
-- Parse .cub file format (textures, colors, map)
+- Parse .cub file format (textures, colors, map) [IN PROGRESS]
 - Implement raycasting engine
 - Handle player movement and rotation
 - Render walls with textures
@@ -24,17 +24,13 @@ make
 - Add key event handling (WASD, arrow keys, ESC)
 
 ### Known Issues 🔴
-- None currently
+- Division of map with "\n" is unacceptable
+- Empt map section in file still proccessed as succesful. Player position is declared.
 
 ### In Progress 🟡
 - Parser implementation
 
 ### Completed 🟢
-- Project structure setup
-- Argument validation (argc check)
-- File extension validation (.cub format)
-- File accessibility check
-- Basic error handling
-- Makefile configuration
+- 
 
 ---

@@ -20,12 +20,20 @@ typedef struct s_img
     char *path;
 } t_img;
 
+typedef struct s_color
+{
+    int r;
+    int g;
+    int b;
+} t_color;
+
 typedef struct s_player
 {
     int player_x;
     int player_y;
     int rot_x;
     int rot_y;
+    char direction; // N, S, E, W
 } t_player;
 
 typedef struct s_map
@@ -34,8 +42,13 @@ typedef struct s_map
     char *map_line;
     int map_height;
     int map_width;
+    int map_started; // Flag to track if map parsing has begun
     t_player *player;
-    t_img img[5];
+    t_img img[4]; // NO, SO, WE, EA
+    t_color floor_color;
+    t_color ceiling_color;
+    int textures_loaded; // bitmask for loaded textures
+    int colors_loaded; // bitmask for loaded colors
 } t_map;
 
 

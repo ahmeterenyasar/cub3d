@@ -31,6 +31,14 @@
 # define ERR_FILE_READ "Error\nCannot read file"
 # define INVALID_FILE_VAR "Error\nIncorrect data"
 # define INVALID_TEXTURE_LINE "Error\nTexture line is incorrect"
+# define INVALID_COLOR_LINE "Error\nColor line is incorrect"
+# define DUPLICATE_ELEMENT "Error\nDuplicate element found"
+# define MISSING_ELEMENT "Error\nMissing required element"
+# define INVALID_RGB "Error\nInvalid RGB values"
+# define INVALID_MAP "Error\nInvalid map"
+# define DUPLICATE_PLAYER "Error\nDuplicate player found"
+# define NO_PLAYER "Error\nNo player found"
+# define UNCLOSED_MAP "Error\nMap is not closed"
 
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
@@ -50,9 +58,27 @@ void init_player(t_player *player);
 
 /* Status Check */
 int status_control(t_map *map, char *map_line);
-void take_texture_path(char **path, char **line);
+void take_texture_path(char **path, char **line, int texture_index, t_map *map);
+void take_color_values(t_color *color, char **line, int color_type, t_map *map);
+int parse_rgb_values(char *rgb_string, t_color *color);
+int is_valid_rgb(int value);
+int skip_whitespace(char *line);
+int is_map_line(char *line);
+int validate_all_elements_loaded(t_map *map);
+
+/* Map Processing */
+int add_map_line(t_map *map, char *line);
+int process_map(t_map *map);
+int find_player(t_map *map);
+int validate_map_walls(t_map *map);
+int flood_fill(t_map *map, int x, int y, char **visited);
+char **create_visited_array(t_map *map);
+void free_visited_array(char **visited, int height);
+int is_valid_map_char(char c);
+int calculate_map_dimensions(t_map *map);
 
 /* Utils*/
 int ft_strlen_for_map(char *map);
+void free_split(char **split);
 
 #endif
