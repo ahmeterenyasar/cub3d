@@ -51,6 +51,14 @@ int find_player(t_map *map)
         return (-1);
     }
     
+    // NO NEED
+    // // Additional check to ensure player position is properly set
+    // if (map->player->player_x == -1 || map->player->player_y == -1)
+    // {
+    //     print_error(INVALID_MAP);
+    //     return (-1);
+    // }
+    
     return (0);
 }
 

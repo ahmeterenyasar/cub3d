@@ -35,10 +35,15 @@ int add_map_line(t_map *map, char ***map_copy, int *map_height)
     map->map_is_ready = 1;
     tmp = malloc(sizeof(char *) * (*map_height + 1));
     if (!tmp)
-        return (-1);
+    return (-1);
     
-    for (i = 0; i < *map_height; i++)
+    i = 0;
+    while (i < *map_height)
+    {
         tmp[i] = (*map_copy)[i];
+        i++;
+    }
+    
     
     clean_line = ft_strdup(map->map_line);
     len = ft_strlen(clean_line);
@@ -105,14 +110,18 @@ int parser(char **argv, t_map *map)
     }
     if (!validate_all_elements_loaded(map))
         return (-1);
-    if (map->map_is_ready && process_map(map) == -1)
-        return (-1);
-
-    if (map->player->player_x == -1 && map->player->player_y == -1)
+    
+    // Check if map exists
+    if (!map->map_is_ready || map->map_height == 0)
     {
         print_error(INVALID_MAP);
+        close(fd);
         return (-1);
     }
+    
+    if (process_map(map) == -1)
+        return (-1);
+
     close(fd);
     debug_print_all_data(map);
     return(0);
