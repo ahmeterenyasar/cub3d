@@ -1,7 +1,6 @@
 
 #include "../../include/cub3d.h"
 
-
 static void debug_print_all_data(t_map *map)
 {
     printf("\n=== Parsed Data ===\n");
@@ -18,11 +17,44 @@ static void debug_print_all_data(t_map *map)
 void find_width(char *line, t_map *map)
 {
     static int max_width = 0;
-    int len = ft_strlen(line);
+    int len;
     
+    len = ft_strlen(line);
     if (len > max_width)
         max_width = len;
     map->map_width = max_width;
+}
+
+int add_map_line(t_map *map, char ***map_copy, int *map_height)
+{
+    char **tmp;
+    char *clean_line;
+    int len;
+    int i;
+
+    map->map_is_ready = 1;
+    tmp = malloc(sizeof(char *) * (*map_height + 1));
+    if (!tmp)
+        return (-1);
+    
+    for (i = 0; i < *map_height; i++)
+        tmp[i] = (*map_copy)[i];
+    
+    clean_line = ft_strdup(map->map_line);
+    len = ft_strlen(clean_line);
+    if (len > 0 && (clean_line[len - 1] == '\n' || clean_line[len - 1] == '\r'))
+        clean_line[len - 1] = '\0';
+    if (len > 1 && (clean_line[len - 2] == '\r' || clean_line[len - 2] == '\n'))
+        clean_line[len - 2] = '\0';
+    
+    tmp[*map_height] = clean_line;
+    if (*map_copy)
+        free(*map_copy);
+    *map_copy = tmp;
+    (*map_height)++;
+    find_width(clean_line, map);
+    
+    return (0);
 }
 
 int read_map(int fd, t_map *map)
@@ -39,27 +71,11 @@ int read_map(int fd, t_map *map)
         status = status_control(map, map->map_line);
         if (status == 1) 
         {
-            map->map_is_ready = 1;
-            char **tmp = malloc(sizeof(char *) * (map_height + 1));
-            if (!tmp)
+            if (add_map_line(map, &map_copy, &map_height) == -1)
             {
                 free(map->map_line);
                 return (-1);
             }
-            for (int i = 0; i < map_height; i++)
-                tmp[i] = map_copy[i];
-            char *clean_line = ft_strdup(map->map_line);
-            int len = ft_strlen(clean_line);
-            if (len > 0 && (clean_line[len - 1] == '\n' || clean_line[len - 1] == '\r'))
-                clean_line[len - 1] = '\0';
-            if (len > 1 && (clean_line[len - 2] == '\r' || clean_line[len - 2] == '\n'))
-                clean_line[len - 2] = '\0';
-            tmp[map_height] = clean_line;
-            if (map_copy)
-                free(map_copy);
-            map_copy = tmp;
-            map_height++;
-            find_width(clean_line, map);
         }
         else if (status == -1)
         {

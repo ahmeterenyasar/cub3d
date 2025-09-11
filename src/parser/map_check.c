@@ -1,29 +1,6 @@
 
 #include "../../include/cub3d.h"
 
-// int add_map_line(t_map *map, char *line)
-// {
-
-// }
-
-
-int calculate_map_dimensions(t_map *map)
-{
-    int i;
-    int current_width;
-    
-    map->map_width = 0;
-    i = 0;
-    while (i < map->map_height)
-    {
-        current_width = ft_strlen(map->map_copy[i]);
-        if (current_width > map->map_width)
-        map->map_width = current_width;
-    i++;
-    }
-    printf("dasdas\n");
-    return (0);
-}
 
 int is_valid_map_char(char c)
 {

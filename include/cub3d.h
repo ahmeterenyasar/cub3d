@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:56:03 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/11 16:12:13 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/11 17:23:20 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int validate_all_elements_loaded(t_map *map);
 
 /* Map Processing */
 
-int add_map_line(t_map *map, char *line);
+int add_map_line(t_map *map, char ***map_copy, int *map_height);
 int process_map(t_map *map);
 int find_player(t_map *map);
 int validate_map_walls(t_map *map);
