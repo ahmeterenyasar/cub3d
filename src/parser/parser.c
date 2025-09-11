@@ -15,10 +15,21 @@ static void debug_print_all_data(t_map *map)
     printf("Map dimensions: %dx%d\n", map->map_width, map->map_height);
 }
 
+void find_width(char *line, t_map *map)
+{
+    static int max_width = 0;
+    int len = ft_strlen(line);
+    
+    if (len > max_width)
+        max_width = len;
+    map->map_width = max_width;
+}
 
 int read_map(int fd, t_map *map)
 {
     int status;
+    char **map_copy = NULL;
+    int map_height = 0;
 
     while (1)
     {
@@ -29,21 +40,39 @@ int read_map(int fd, t_map *map)
         if (status == 1) 
         {
             map->map_is_ready = 1;
-            if (add_map_line(map, map->map_line) == -1)
+            char **tmp = malloc(sizeof(char *) * (map_height + 1));
+            if (!tmp)
             {
                 free(map->map_line);
                 return (-1);
             }
+            for (int i = 0; i < map_height; i++)
+                tmp[i] = map_copy[i];
+            char *clean_line = ft_strdup(map->map_line);
+            int len = ft_strlen(clean_line);
+            if (len > 0 && (clean_line[len - 1] == '\n' || clean_line[len - 1] == '\r'))
+                clean_line[len - 1] = '\0';
+            if (len > 1 && (clean_line[len - 2] == '\r' || clean_line[len - 2] == '\n'))
+                clean_line[len - 2] = '\0';
+            tmp[map_height] = clean_line;
+            if (map_copy)
+                free(map_copy);
+            map_copy = tmp;
+            map_height++;
+            find_width(clean_line, map);
         }
         else if (status == -1)
         {
             free(map->map_line);
             return (-1);
-        }   
+        }
         free(map->map_line);
     }
+    map->map_copy = map_copy;
+    map->map_height = map_height;
     return (0);
 }
+
 
 int parser(char **argv, t_map *map)
 {
@@ -62,6 +91,7 @@ int parser(char **argv, t_map *map)
         return (-1);
     if (map->map_is_ready && process_map(map) == -1)
         return (-1);
+
     if (map->player->player_x == -1 && map->player->player_y == -1)
     {
         print_error(INVALID_MAP);

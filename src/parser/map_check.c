@@ -1,60 +1,11 @@
 
 #include "../../include/cub3d.h"
 
-int add_map_line(t_map *map, char *line)
-{
-    char **new_map;
-    int i;
-    int len;
+// int add_map_line(t_map *map, char *line)
+// {
 
+// }
 
-    len = ft_strlen(line);
-    // printf("line: %s, uzunluk: %d\n", line, len);
-    if (len > 0 && (line[len - 1] == '\n' || line[len - 1] == '\r'))
-        line[len - 1] = '\0';
-    if (len > 1 && (line[len - 2] == '\r' || line[len - 2] == '\n'))
-        line[len - 2] = '\0';
-
-    
-    
-    
-    // Skip empty lines
-    if (ft_strlen(line) == 0)
-        return (0);
-    
-    // Allocate new map arrayü
-    // printf("%d\n", map->map_height);
-    new_map = malloc(sizeof(char *) * (map->map_height + 2));
-    if (!new_map)
-        return (-1);
-    
-    // Copy existing lines
-    i = 0;
-    while (i < map->map_height)
-    {
-        new_map[i] = map->map_copy[i];
-        i++;
-    }
-    
-    // Add new line
-    new_map[map->map_height] = ft_strdup(line);
-    if (!new_map[map->map_height])
-    {
-        free(new_map);
-        return (-1);
-    }
-    
-    new_map[map->map_height + 1] = NULL;
-    
-    // Free old array (not the strings)
-    // if (map->map_copy)
-    //     free(map->map_copy);
-    
-    map->map_copy = new_map;
-    map->map_height++;
-    
-    return (0);
-}
 
 int calculate_map_dimensions(t_map *map)
 {
@@ -67,9 +18,10 @@ int calculate_map_dimensions(t_map *map)
     {
         current_width = ft_strlen(map->map_copy[i]);
         if (current_width > map->map_width)
-            map->map_width = current_width;
-        i++;
+        map->map_width = current_width;
+    i++;
     }
+    printf("dasdas\n");
     return (0);
 }
 
@@ -265,7 +217,6 @@ int process_map(t_map *map)
         print_error(INVALID_MAP);
         return (-1);
     }
-    calculate_map_dimensions(map);
     if (find_player(map) == -1)
         return (-1);
     if (validate_map_walls(map) == -1)

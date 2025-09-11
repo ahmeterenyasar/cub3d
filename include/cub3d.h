@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:56:03 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/11 14:10:26 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/11 16:12:13 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int is_map_line(char *line);
 int validate_all_elements_loaded(t_map *map);
 
 /* Map Processing */
+
 int add_map_line(t_map *map, char *line);
 int process_map(t_map *map);
 int find_player(t_map *map);
@@ -78,7 +79,6 @@ int flood_fill(t_map *map, int x, int y, char **visited);
 char **create_visited_array(t_map *map);
 void free_visited_array(char **visited, int height);
 int is_valid_map_char(char c);
-int calculate_map_dimensions(t_map *map);
 
 /* Utils*/
 int ft_strlen_for_map(char *map);

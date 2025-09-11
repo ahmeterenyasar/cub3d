@@ -42,6 +42,7 @@ typedef struct s_map
     char *map_line;
     int map_height;
     int map_width;
+    char *clean_line;
     int map_started; // Flag to track if map parsing has begun
     int map_is_ready;
     t_player *player;

@@ -7,6 +7,7 @@ void init_data(t_map *map)
 
     map->map_copy = NULL;
     map->map_line = NULL;
+    map->clean_line = NULL;
     map->map_height = 0;
     map->map_width = 0;
     map->map_started = 0;
