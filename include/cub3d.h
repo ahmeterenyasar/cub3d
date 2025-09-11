@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:56:03 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/11 18:02:46 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/11 20:45:03 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,14 @@ int		add_map_line(t_map *map, char ***map_copy, int *map_height);
 int		process_map(t_map *map);
 int		find_player(t_map *map);
 int		validate_map_walls(t_map *map);
+int		validate_all_empty_spaces(t_map *map);
 int		flood_fill(t_map *map, int x, int y, char **visited);
 char	**create_visited_array(t_map *map);
 void	free_visited_array(char **visited, int height);
 int		is_valid_map_char(char c);
+int		is_at_map_edge(t_map *map, int x, int y);
+int		has_open_corner(t_map *map, int x, int y);
+int		is_space_properly_surrounded(t_map *map, int x, int y);
 
 /* Utils*/
 int		ft_strlen_for_map(char *map);
