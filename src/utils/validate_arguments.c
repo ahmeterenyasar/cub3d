@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   validate_arguments.c                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/09 10:55:58 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/09 15:33:54 by ayasar           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
@@ -58,19 +47,15 @@ int	validate_arguments(int argc, char **argv)
 		print_error(ERR_USAGE);
 		return (0);
 	}
-
 	if (!validate_file_extension(argv[1]))
 	{
 		print_error(ERR_FILE_EXT);
 		return (0);
 	}
-
 	if (!validate_file_access(argv[1]))
 	{
 		print_error(ERR_FILE_OPEN);
 		return (0);
 	}
-	
-	printf("File validation successful: %s\n", argv[1]);
 	return (1);
 }

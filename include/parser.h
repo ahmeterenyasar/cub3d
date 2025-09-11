@@ -43,6 +43,7 @@ typedef struct s_map
     int map_height;
     int map_width;
     int map_started; // Flag to track if map parsing has begun
+    int map_is_ready;
     t_player *player;
     t_img img[4]; // NO, SO, WE, EA
     t_color floor_color;

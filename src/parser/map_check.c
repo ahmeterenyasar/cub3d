@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_check.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/09 15:55:28 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/09 17:59:45 by ayasar           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
@@ -17,19 +6,24 @@ int add_map_line(t_map *map, char *line)
     char **new_map;
     int i;
     int len;
-    
-    // Remove newline and carriage return if exists
+
+
     len = ft_strlen(line);
+    // printf("line: %s, uzunluk: %d\n", line, len);
     if (len > 0 && (line[len - 1] == '\n' || line[len - 1] == '\r'))
         line[len - 1] = '\0';
     if (len > 1 && (line[len - 2] == '\r' || line[len - 2] == '\n'))
         line[len - 2] = '\0';
+
+    
+    
     
     // Skip empty lines
     if (ft_strlen(line) == 0)
         return (0);
     
-    // Allocate new map array
+    // Allocate new map arrayü
+    // printf("%d\n", map->map_height);
     new_map = malloc(sizeof(char *) * (map->map_height + 2));
     if (!new_map)
         return (-1);
@@ -53,8 +47,8 @@ int add_map_line(t_map *map, char *line)
     new_map[map->map_height + 1] = NULL;
     
     // Free old array (not the strings)
-    if (map->map_copy)
-        free(map->map_copy);
+    // if (map->map_copy)
+    //     free(map->map_copy);
     
     map->map_copy = new_map;
     map->map_height++;
@@ -81,7 +75,7 @@ int calculate_map_dimensions(t_map *map)
 
 int is_valid_map_char(char c)
 {
-    return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == ' ');
+    return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == ' ' );
 }
 
 int find_player(t_map *map)
@@ -114,7 +108,6 @@ int find_player(t_map *map)
                 map->player->player_x = x;
                 map->player->player_y = y;
                 map->player->direction = map->map_copy[y][x];
-                
                 // Replace player position with empty space for flood fill
                 map->map_copy[y][x] = '0';
             }
@@ -241,7 +234,6 @@ int flood_fill(t_map *map, int x, int y, char **visited)
         if (flood_fill(map, x, y - 1, visited) == -1)
             return (-1);
     }
-    
     return (0);
 }
 
@@ -263,7 +255,6 @@ int validate_map_walls(t_map *map)
         print_error(UNCLOSED_MAP);
         return (-1);
     }
-    
     return (0);
 }
 
@@ -279,6 +270,5 @@ int process_map(t_map *map)
         return (-1);
     if (validate_map_walls(map) == -1)
         return (-1);
-
     return (0);
 }

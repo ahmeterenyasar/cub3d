@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   status_control.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: igurses <igurses@student.42istanbul.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/09 15:39:36 by igurses           #+#    #+#             */
-/*   Updated: 2025/09/09 16:03:110 by igurses          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../include/cub3d.h"
 
 void take_texture_path(char **path, char **line, int texture_index, t_map *map)
@@ -133,81 +121,56 @@ int validate_all_elements_loaded(t_map *map)
         print_error(MISSING_ELEMENT);
         return (0);
     }
-    /* 
-        NO = 0 → (1 << 0) = 0001 = 1
-        SO = 1 → (1 << 1) = 0010 = 2  
-        WE = 2 → (1 << 2) = 0100 = 4
-        EA = 3 → (1 << 3) = 1000 = 8
-    */
-
     if (map->colors_loaded != 3)
     {
         print_error(MISSING_ELEMENT);
         return (0);
     }
-    
     return (1);
 }
 
-int status_control(t_map *map, char *map_line)
+int handle_empty_line(t_map *map, char *line)
 {
-    char **split;
     int i;
     
-    if (!map_line)
+    if (!line)
         return (-1);
     
-    i = skip_whitespace(map_line);
-    
-    // skip empty lines only if map hasn't started yet
-    // status_control is inside a while loop
-    // '\r' is for Windows compatibility, can be deleted tm mı berat
-    if (!map_line[i] || map_line[i] == '\n' || map_line[i] == '\r')
+    i = skip_whitespace(line);
+    if (!line[i] || line[i] == '\n' || line[i] == '\r')
     {
-        // empty line detected after map started -> invalid
-        if (map->map_started) 
+        if (map->map_started)
         {
             print_error(INVALID_MAP);
             return (-1);
         }
-        // skip empty lines before map starts
-        return (0); 
+        return (0);
     }
-    
-    // check if all elements loaded and this is a map line
+    return (1);
+}
+
+int handle_map_parsing(t_map *map, char *line)
+{
     if (map->textures_loaded == 15 && map->colors_loaded == 3)
     {
-        if (is_map_line(map_line))
+        if (is_map_line(line))
         {
-            map->map_started = 1; // FLAG -> map section has started
-            return (1); // Start processing map
+            map->map_started = 1;
+            return (1);
         }
-        else if (map->map_started) // Non-map line after map started = invalid
+        else if (map->map_started)
         {
             print_error(INVALID_MAP);
             return (-1);
         }
         else
-        {
-            return (0); // skip non-map lines after all elements loaded but before map starts
-        }
+            return (0);
     }
-    
-    split = ft_split(map_line, ' ');
-    if (!split || !split[0])
-    {
-        if (split)
-            free_split(split);
-        return (0);
-    }
-    
-    // check if first element is empty string
-    if (split[0][0] == '\0')
-    {
-        free_split(split);
-        return (0);
-    }
-    
+    return (2);
+}
+
+int process_element_line(t_map *map, char **split)
+{
     if (ft_strncmp(split[0], "NO", 2) == 0 && ft_strlen(split[0]) == 2)
         take_texture_path(&map->img[0].path, split, 0, map);
     else if (ft_strncmp(split[0], "SO", 2) == 0 && ft_strlen(split[0]) == 2)
@@ -222,28 +185,36 @@ int status_control(t_map *map, char *map_line)
         take_color_values(&map->ceiling_color, split, 1, map);
     else
     {
-        
-        // if all elements are loaded and this looks like a map line, treat it as map
-        if (map->textures_loaded == 15 && map->colors_loaded == 3)
-        {
-            free_split(split);
-            if (is_map_line(map_line))
-            {
-                map->map_started = 1; // Mark that map section has started
-                return (1); // This is a map line
-            }
-            else
-                return (0); // Skip this line
-        }
-        else
-        {
-            free_split(split);
-            print_error(INVALID_FILE_VAR);
-            return (-1);
-        }
+        print_error(INVALID_FILE_VAR);
+        return (-1);
     }
-    
-    free_split(split);
     return (0);
 }
 
+int status_control(t_map *map, char *map_line)
+{
+    char **split;
+    int empty_result;
+    int map_result;
+    
+    empty_result = handle_empty_line(map, map_line);
+    if (empty_result <= 0)
+        return (empty_result);
+    map_result = handle_map_parsing(map, map_line);
+    if (map_result != 2)
+        return (map_result);
+    split = ft_split(map_line, ' ');
+    if (!split || !split[0] || split[0][0] == '\0')
+    {
+        if (split)
+            free_split(split);
+        return (0);
+    }
+    if (process_element_line(map, split) == -1)
+    {
+        free_split(split);
+        return (-1);
+    }
+    free_split(split);
+    return (0);
+}

@@ -1,3 +1,4 @@
+
 NO ./assets/north_texture.xpm
 SO ./assets/south_texture.xpm
 WE ./assets/west_texture.xpm
@@ -6,6 +7,11 @@ EA ./assets/east_texture.xpm
 F 220,100,0
 C 225,30,0
 
-111
-1S1
-111
+
+
+
+
+
+
+
+

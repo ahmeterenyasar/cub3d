@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:56:03 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/09 17:59:44 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/11 14:10:26 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ void init_player(t_player *player);
 
 /* Status Check */
 int status_control(t_map *map, char *map_line);
+int handle_empty_line(t_map *map, char *line);
+int handle_map_parsing(t_map *map, char *line);
+int process_element_line(t_map *map, char **split);
 void take_texture_path(char **path, char **line, int texture_index, t_map *map);
 void take_color_values(t_color *color, char **line, int color_type, t_map *map);
 int parse_rgb_values(char *rgb_string, t_color *color);
@@ -80,5 +83,6 @@ int calculate_map_dimensions(t_map *map);
 /* Utils*/
 int ft_strlen_for_map(char *map);
 void free_split(char **split);
+
 
 #endif
