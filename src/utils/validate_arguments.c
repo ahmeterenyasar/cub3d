@@ -11,31 +11,26 @@ void	print_error(char *message)
 int	validate_file_extension(char *filename)
 {
 	int	len;
-	
+
 	if (!filename)
 		return (0);
-	
 	len = ft_strlen(filename);
 	if (len < 5)
 		return (0);
-	
 	if (ft_strcmp(filename + len - 4, ".cub") != 0)
 		return (0);
-	
 	return (1);
 }
 
 int	validate_file_access(char *filename)
 {
 	int	fd;
-	
+
 	if (!filename)
 		return (0);
-	
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	
 	close(fd);
 	return (1);
 }
