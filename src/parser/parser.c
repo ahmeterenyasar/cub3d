@@ -16,6 +16,18 @@ static void	debug_print_all_data(t_map *map)
 		map->player->player_y, map->player->direction);
 	printf("Map dimensions: %dx%d\n", map->map_width, map->map_height);
 }
+static void	print_map_copy(char **map_copy, int map_height)
+{
+    int	i;
+
+    i = 0;
+    while (i < map_height)
+    {
+        printf("%s\n", map_copy[i]);
+        i++;
+    }
+}
+
 
 int	add_map_line(t_map *map, char ***map_copy, int *map_height)
 {
@@ -80,6 +92,7 @@ int	read_map(int fd, t_map *map)
 	}
 	map->map_copy = map_copy;
 	map->map_height = map_height;
+	// print_map_copy(map_copy, map_height);
 	return (0);
 }
 
