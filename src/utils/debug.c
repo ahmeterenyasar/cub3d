@@ -1,6 +1,5 @@
 #include "../../include/cub3d.h"
 
-
 void	debug_print_all_data(t_map *map)
 {
 	printf("\n=== Parsed Data ===\n");
@@ -18,12 +17,12 @@ void	debug_print_all_data(t_map *map)
 }
 void	print_map_copy(char **map_copy, int map_height)
 {
-    int	i;
+	int i;
 
-    i = 0;
-    while (i < map_height)
-    {
-        printf("%s\n", map_copy[i]);
-        i++;
-    }
+	i = 0;
+	while (i < map_height)
+	{
+		printf("%s\n", map_copy[i]);
+		i++;
+	}
 }

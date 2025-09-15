@@ -55,9 +55,9 @@ char	**create_map_copy(t_map *map)
 
 int	validate_all_empty_spaces(t_map *map)
 {
+	char	current_char;
+
 	int x, y;
-	char current_char;
-	
 	y = 0;
 	while (y < map->map_height)
 	{
@@ -65,8 +65,9 @@ int	validate_all_empty_spaces(t_map *map)
 		while (x < (int)ft_strlen(map->map_copy[y]))
 		{
 			current_char = map->map_copy[y][x];
-			if (current_char == '0' || current_char == 'N' || current_char == 'S' 
-				|| current_char == 'E' || current_char == 'W' || current_char == ' ')
+			if (current_char == '0' || current_char == 'N'
+				|| current_char == 'S' || current_char == 'E'
+				|| current_char == 'W' || current_char == ' ')
 			{
 				if (is_at_map_edge(map, x, y))
 					return (-1);

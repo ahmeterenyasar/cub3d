@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:56:03 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/15 19:13:37 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/15 19:41:03 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	print_error(char *message);
 
 /* Parser */
 int		parser(char **argv, t_map *map);
-int	add_map_line(t_map *map, char ***map_copy, int *map_height);
-int	read_map(int fd, t_map *map);
-char *prepare_clean_line(char *original_line);
-char **resize_map_array(char **old_map, int old_height);
+int		add_map_line(t_map *map, char ***map_copy, int *map_height);
+int		read_map(int fd, t_map *map);
+char	*prepare_clean_line(char *original_line);
+char	**resize_map_array(char **old_map, int old_height);
 
 /* Init */
 void	init_data(t_map *map);
@@ -74,7 +74,7 @@ int		is_texture_accessible(char *path);
 int		validate_texture_file(char *path);
 
 /*Flood Fill*/
-int	flood_fill(t_map *map, int x, int y, char **visited);
+int		flood_fill(t_map *map, int x, int y, char **visited);
 
 /* Map Processing */
 int		process_map(t_map *map);
@@ -88,7 +88,7 @@ int		ft_strlen_for_map(char *map);
 int		is_valid_rgb(int value);
 int		skip_whitespace(char *line);
 int		is_map_line(char *line);
-void remove_eof(char *line);
+void	remove_eof(char *line);
 
 /* Map Utils*/
 int		is_valid_map_char(char c);
@@ -98,7 +98,7 @@ int		is_at_map_edge(t_map *map, int x, int y);
 int		has_open_corner(t_map *map, int x, int y);
 
 /*Player Utils*/
-int	check_player_count(int player_count);
+int		check_player_count(int player_count);
 void	check_is_player(t_map *map, int x, int y);
 
 /*Debug*/

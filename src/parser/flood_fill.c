@@ -2,7 +2,7 @@
 
 int	flood_fill(t_map *map, int x, int y, char **visited)
 {
-	char	current_char;
+	char current_char;
 
 	if (y < 0 || y >= map->map_height || x < 0)
 		return (-1);
@@ -14,7 +14,7 @@ int	flood_fill(t_map *map, int x, int y, char **visited)
 	if (current_char == '1')
 		return (0);
 	// buraya bi bakçaz boşluk işlemeyle ilgili sıkıntılar var.
-	if (current_char == '0' || current_char == 'N' || current_char == 'S' 
+	if (current_char == '0' || current_char == 'N' || current_char == 'S'
 		|| current_char == 'E' || current_char == 'W' || current_char == ' ')
 	{
 		visited[y][x] = '1';

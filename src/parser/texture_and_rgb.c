@@ -42,8 +42,7 @@ int	validate_texture_file(char *path)
 	return (1);
 }
 
-int	take_texture_path(char **path, char **line, int texture_index,
-		t_map *map)
+int	take_texture_path(char **path, char **line, int texture_index, t_map *map)
 {
 	int	i;
 
@@ -91,8 +90,7 @@ int	parse_rgb_values(char *rgb_string, t_color *color)
 	return (1);
 }
 
-int	take_color_values(t_color *color, char **line, int color_type,
-		t_map *map)
+int	take_color_values(t_color *color, char **line, int color_type, t_map *map)
 {
 	int	i;
 

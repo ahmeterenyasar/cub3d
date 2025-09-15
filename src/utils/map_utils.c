@@ -2,8 +2,8 @@
 
 void	find_width(char *line, t_map *map)
 {
-	static int max_width = 0;
-	int len;
+	static int	max_width = 0;
+	int			len;
 
 	len = ft_strlen(line);
 	if (len > max_width)
@@ -60,14 +60,13 @@ int	is_at_map_edge(t_map *map, int x, int y)
 	return (0);
 }
 
-
 int	has_open_corner(t_map *map, int x, int y)
 {
 	int	dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};
 	int	dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
 	int	i;
-	int	nx, ny;
 
+	int nx, ny;
 	i = 0;
 	while (i < 8)
 	{
@@ -77,7 +76,7 @@ int	has_open_corner(t_map *map, int x, int y)
 			return (1);
 		if (nx >= (int)ft_strlen(map->map_copy[ny]))
 			return (1);
-		//added
+		// added
 		if (map->map_copy[ny][nx] == ' ')
 			return (1);
 		i++;

@@ -1,57 +1,56 @@
 
 #include "../../include/cub3d.h"
 
-
-char **resize_map_array(char **old_map, int old_height)
+char	**resize_map_array(char **old_map, int old_height)
 {
-    char **new_map;
-    int i;
-    
-    new_map = malloc(sizeof(char *) * (old_height + 1));
-    if (!new_map)
-        return (NULL);
-    i = 0;
-    while (i < old_height)
-    {
-        new_map[i] = old_map[i];
-        i++;
-    }
-    return (new_map);
+	char	**new_map;
+	int		i;
+
+	new_map = malloc(sizeof(char *) * (old_height + 1));
+	if (!new_map)
+		return (NULL);
+	i = 0;
+	while (i < old_height)
+	{
+		new_map[i] = old_map[i];
+		i++;
+	}
+	return (new_map);
 }
 
-char *prepare_clean_line(char *original_line)
+char	*prepare_clean_line(char *original_line)
 {
-    char *clean_line;
-    
-    clean_line = ft_strdup(original_line);
-    if (!clean_line)
-        return (NULL);
-    remove_eof(clean_line);
-    return (clean_line);
+	char	*clean_line;
+
+	clean_line = ft_strdup(original_line);
+	if (!clean_line)
+		return (NULL);
+	remove_eof(clean_line);
+	return (clean_line);
 }
 
-int add_map_line(t_map *map, char ***map_copy, int *map_height)
+int	add_map_line(t_map *map, char ***map_copy, int *map_height)
 {
-    char **new_map;
-    char *clean_line;
-    
-    map->map_is_ready = 1;
-    new_map = resize_map_array(*map_copy, *map_height);
-    if (!new_map)
-        return (-1);
-    clean_line = prepare_clean_line(map->map_line);
-    if (!clean_line)
-    {
-        free(new_map);
-        return (-1);
-    }
-    new_map[*map_height] = clean_line;
-    if (*map_copy)
-        free(*map_copy);
-    *map_copy = new_map;
-    (*map_height)++;
-    find_width(clean_line, map);
-    return (0);
+	char	**new_map;
+	char	*clean_line;
+
+	map->map_is_ready = 1;
+	new_map = resize_map_array(*map_copy, *map_height);
+	if (!new_map)
+		return (-1);
+	clean_line = prepare_clean_line(map->map_line);
+	if (!clean_line)
+	{
+		free(new_map);
+		return (-1);
+	}
+	new_map[*map_height] = clean_line;
+	if (*map_copy)
+		free(*map_copy);
+	*map_copy = new_map;
+	(*map_height)++;
+	find_width(clean_line, map);
+	return (0);
 }
 
 int	read_map(int fd, t_map *map)

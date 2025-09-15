@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igurses <igurses@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 18:09:12 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/15 15:01:48 by igurses          ###   ########.fr       */
+/*   Updated: 2025/09/15 19:41:21 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ int	is_valid_map_char(char c)
 		|| c == ' ');
 }
 
-void remove_eof(char *line)
+void	remove_eof(char *line)
 {
-    int len;
-    
-    if (!line)
-        return;
-    len = ft_strlen(line);
-    if (len > 0 && (line[len - 1] == '\n' || line[len - 1] == '\r'))
-        line[len - 1] = '\0';
-    len = ft_strlen(line);
-    if (len > 0 && (line[len - 1] == '\r' || line[len - 1] == '\n'))
-        line[len - 1] = '\0';
+	int	len;
+
+	if (!line)
+		return ;
+	len = ft_strlen(line);
+	if (len > 0 && (line[len - 1] == '\n' || line[len - 1] == '\r'))
+		line[len - 1] = '\0';
+	len = ft_strlen(line);
+	if (len > 0 && (line[len - 1] == '\r' || line[len - 1] == '\n'))
+		line[len - 1] = '\0';
 }
