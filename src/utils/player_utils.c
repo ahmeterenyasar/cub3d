@@ -25,5 +25,6 @@ void	check_is_player(t_map *map, int x, int y)
 		map->player->player_x = x;
 		map->player->player_y = y;
 		map->player->direction = map->map_copy[y][x];
+		map->map_copy[y][x] = '0';
 	}
 }
