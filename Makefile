@@ -32,11 +32,17 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SRCS = main.c \
        $(SRC_DIR)/utils/validate_arguments.c \
        $(SRC_DIR)/utils/utils.c \
+       $(SRC_DIR)/utils/free.c \
+       $(SRC_DIR)/utils/debug.c \
        $(SRC_DIR)/utils/map_utils.c \
+       $(SRC_DIR)/utils/player_utils.c \
 	   $(SRC_DIR)/parser/parser.c \
 	   $(SRC_DIR)/parser/init_data.c \
 	   $(SRC_DIR)/parser/status_control.c \
 	   $(SRC_DIR)/parser/map_check.c \
+	   $(SRC_DIR)/parser/texture_and_rgb.c \
+	   $(SRC_DIR)/parser/flood_fill.c \
+
 
 # Get Next Line files
 GNL_SRCS = $(GNL_DIR)/get_next_line.c \

@@ -34,6 +34,7 @@ typedef struct s_player
 	int			rot_x;
 	int			rot_y;
 	char direction; // N, S, E, W
+	int 		player_count;
 }				t_player;
 
 typedef struct s_map

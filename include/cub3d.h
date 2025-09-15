@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: igurses <igurses@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:56:03 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/11 20:45:03 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/15 15:13:01 by igurses          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ void	print_error(char *message);
 
 /* Parser */
 int		parser(char **argv, t_map *map);
+int	add_map_line(t_map *map, char ***map_copy, int *map_height);
+int	read_map(int fd, t_map *map);
+char *prepare_clean_line(char *original_line);
+char **resize_map_array(char **old_map, int old_height);
 
 /* Init */
 void	init_data(t_map *map);
@@ -58,37 +62,48 @@ int		status_control(t_map *map, char *map_line);
 int		handle_empty_line(t_map *map, char *line);
 int		handle_map_parsing(t_map *map, char *line);
 int		process_element_line(t_map *map, char **split);
+
+/*Texture And RGB*/
+int		parse_rgb_values(char *rgb_string, t_color *color);
 void	take_texture_path(char **path, char **line, int texture_index,
 			t_map *map);
 void	take_color_values(t_color *color, char **line, int color_type,
 			t_map *map);
-int		parse_rgb_values(char *rgb_string, t_color *color);
-int		is_valid_rgb(int value);
-int		skip_whitespace(char *line);
-int		is_map_line(char *line);
-int		validate_all_elements_loaded(t_map *map);
+
+/*Flood Fill*/
+int	flood_fill(t_map *map, int x, int y, char **visited);
 
 /* Map Processing */
-int		add_map_line(t_map *map, char ***map_copy, int *map_height);
 int		process_map(t_map *map);
 int		find_player(t_map *map);
 int		validate_map_walls(t_map *map);
 int		validate_all_empty_spaces(t_map *map);
-int		flood_fill(t_map *map, int x, int y, char **visited);
-char	**create_visited_array(t_map *map);
-void	free_visited_array(char **visited, int height);
-int		is_valid_map_char(char c);
-int		is_at_map_edge(t_map *map, int x, int y);
-int		has_open_corner(t_map *map, int x, int y);
-int		is_space_properly_surrounded(t_map *map, int x, int y);
+char	**create_map_copy(t_map *map);
 
 /* Utils*/
 int		ft_strlen_for_map(char *map);
-void	free_split(char **split);
+int		is_valid_rgb(int value);
+int		skip_whitespace(char *line);
+int		is_map_line(char *line);
+void remove_eof(char *line);
 
 /* Map Utils*/
-void	free_visited_array(char **visited, int height);
 int		is_valid_map_char(char c);
 void	find_width(char *line, t_map *map);
+int		validate_all_elements_loaded(t_map *map);
+int		is_at_map_edge(t_map *map, int x, int y);
+int		has_open_corner(t_map *map, int x, int y);
+
+/*Player Utils*/
+int	check_player_count(int player_count);
+void	check_is_player(t_map *map, int x, int y);
+
+/*Debug*/
+void	print_map_copy(char **map_copy, int map_height);
+void	debug_print_all_data(t_map *map);
+
+/*Free*/
+void	free_split(char **split);
+void	free_visited_array(char **visited, int height);
 
 #endif

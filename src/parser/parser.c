@@ -1,64 +1,57 @@
 
 #include "../../include/cub3d.h"
 
-static void	debug_print_all_data(t_map *map)
-{
-	printf("\n=== Parsed Data ===\n");
-	printf("NO: %s\n", map->img[0].path ? map->img[0].path : "NULL");
-	printf("SO: %s\n", map->img[1].path ? map->img[1].path : "NULL");
-	printf("WE: %s\n", map->img[2].path ? map->img[2].path : "NULL");
-	printf("EA: %s\n", map->img[3].path ? map->img[3].path : "NULL");
-	printf("Floor RGB: %d,%d,%d\n", map->floor_color.r, map->floor_color.g,
-		map->floor_color.b);
-	printf("Ceiling RGB: %d,%d,%d\n", map->ceiling_color.r,
-		map->ceiling_color.g, map->ceiling_color.b);
-	printf("Player at: (%d, %d) facing %c\n", map->player->player_x,
-		map->player->player_y, map->player->direction);
-	printf("Map dimensions: %dx%d\n", map->map_width, map->map_height);
-}
-static void	print_map_copy(char **map_copy, int map_height)
-{
-    int	i;
 
+char **resize_map_array(char **old_map, int old_height)
+{
+    char **new_map;
+    int i;
+    
+    new_map = malloc(sizeof(char *) * (old_height + 1));
+    if (!new_map)
+        return (NULL);
     i = 0;
-    while (i < map_height)
+    while (i < old_height)
     {
-        printf("%s\n", map_copy[i]);
+        new_map[i] = old_map[i];
         i++;
     }
+    return (new_map);
 }
 
-
-int	add_map_line(t_map *map, char ***map_copy, int *map_height)
+char *prepare_clean_line(char *original_line)
 {
-	char	**tmp;
-	char	*clean_line;
-	int		len;
-	int		i;
+    char *clean_line;
+    
+    clean_line = ft_strdup(original_line);
+    if (!clean_line)
+        return (NULL);
+    remove_eof(clean_line);
+    return (clean_line);
+}
 
-	map->map_is_ready = 1;
-	tmp = malloc(sizeof(char *) * (*map_height + 1));
-	if (!tmp)
-		return (-1);
-	i = 0;
-	while (i < *map_height)
-	{
-		tmp[i] = (*map_copy)[i];
-		i++;
-	}
-	clean_line = ft_strdup(map->map_line);
-	len = ft_strlen(clean_line);
-	if (len > 0 && (clean_line[len - 1] == '\n' || clean_line[len - 1] == '\r'))
-		clean_line[len - 1] = '\0';
-	if (len > 1 && (clean_line[len - 2] == '\r' || clean_line[len - 2] == '\n'))
-		clean_line[len - 2] = '\0';
-	tmp[*map_height] = clean_line;
-	if (*map_copy)
-		free(*map_copy);
-	*map_copy = tmp;
-	(*map_height)++;
-	find_width(clean_line, map);
-	return (0);
+int add_map_line(t_map *map, char ***map_copy, int *map_height)
+{
+    char **new_map;
+    char *clean_line;
+    
+    map->map_is_ready = 1;
+    new_map = resize_map_array(*map_copy, *map_height);
+    if (!new_map)
+        return (-1);
+    clean_line = prepare_clean_line(map->map_line);
+    if (!clean_line)
+    {
+        free(new_map);
+        return (-1);
+    }
+    new_map[*map_height] = clean_line;
+    if (*map_copy)
+        free(*map_copy);
+    *map_copy = new_map;
+    (*map_height)++;
+    find_width(clean_line, map);
+    return (0);
 }
 
 int	read_map(int fd, t_map *map)
@@ -92,7 +85,6 @@ int	read_map(int fd, t_map *map)
 	}
 	map->map_copy = map_copy;
 	map->map_height = map_height;
-	// print_map_copy(map_copy, map_height);
 	return (0);
 }
 
@@ -123,5 +115,6 @@ int	parser(char **argv, t_map *map)
 		return (-1);
 	close(fd);
 	debug_print_all_data(map);
+	print_map_copy(map->map_copy, map->map_height);
 	return (0);
 }

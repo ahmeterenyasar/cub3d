@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: igurses <igurses@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 18:09:12 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/11 18:11:40 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/15 15:01:48 by igurses          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,37 @@ int	ft_strlen_for_map(char *map)
 	return (i);
 }
 
-void	free_split(char **split)
+int	is_valid_rgb(int value)
+{
+	return (value >= 0 && value <= 255);
+}
+
+int	skip_whitespace(char *line)
 {
 	int	i;
 
-	if (!split)
-		return ;
 	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
+	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\r'))
 		i++;
-	}
-	free(split);
+	return (i);
+}
+
+int	is_valid_map_char(char c)
+{
+	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
+		|| c == ' ');
+}
+
+void remove_eof(char *line)
+{
+    int len;
+    
+    if (!line)
+        return;
+    len = ft_strlen(line);
+    if (len > 0 && (line[len - 1] == '\n' || line[len - 1] == '\r'))
+        line[len - 1] = '\0';
+    len = ft_strlen(line);
+    if (len > 0 && (line[len - 1] == '\r' || line[len - 1] == '\n'))
+        line[len - 1] = '\0';
 }

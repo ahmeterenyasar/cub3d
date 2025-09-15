@@ -43,6 +43,7 @@ void	init_player(t_player *player)
 	player->rot_x = 0;
 	player->rot_y = 0;
 	player->direction = '\0';
+	player->player_count = 0;
 }
 
 // void init_img(t_image *image)
