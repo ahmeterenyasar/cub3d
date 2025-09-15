@@ -77,6 +77,9 @@ int	has_open_corner(t_map *map, int x, int y)
 			return (1);
 		if (nx >= (int)ft_strlen(map->map_copy[ny]))
 			return (1);
+		//added
+		if (map->map_copy[ny][nx] == ' ')
+			return (1);
 		i++;
 	}
 	return (0);

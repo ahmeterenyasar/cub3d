@@ -24,11 +24,12 @@ make
 - Add key event handling (WASD, arrow keys, ESC)
 
 ### Known Issues 🔴
+- Most of the maps are not handled correctly. Correct maps processed as invalid most of the time. Espacially space handling needs fix.
 
 ### In Progress 🟡
 - Parser implementation
 
 ### Completed 🟢
-- 
+- Validation of texture files in .cub file.
 
 ---

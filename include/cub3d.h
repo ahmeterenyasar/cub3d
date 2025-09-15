@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:56:03 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/15 18:56:40 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/15 19:13:37 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ int		take_texture_path(char **path, char **line, int texture_index,
 			t_map *map);
 int		take_color_values(t_color *color, char **line, int color_type,
 			t_map *map);
+int		is_valid_texture_extension(char *path);
+int		is_texture_accessible(char *path);
+int		validate_texture_file(char *path);
 
 /*Flood Fill*/
 int	flood_fill(t_map *map, int x, int y, char **visited);
