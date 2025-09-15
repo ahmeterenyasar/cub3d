@@ -95,7 +95,6 @@ int		is_valid_map_char(char c);
 void	find_width(char *line, t_map *map);
 int		validate_all_elements_loaded(t_map *map);
 int		is_at_map_edge(t_map *map, int x, int y);
-int		has_open_corner(t_map *map, int x, int y);
 
 /*Player Utils*/
 int		check_player_count(int player_count);

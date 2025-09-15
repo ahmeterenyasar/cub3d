@@ -44,22 +44,23 @@ int	validate_texture_file(char *path)
 
 int	take_texture_path(char **path, char **line, int texture_index, t_map *map)
 {
-	int	i;
+	char	*trimmed_line;
+	int		len;
 
-	i = 0;
-	while (line[i])
-		i++;
-	if (i >= 2 && line[i - 1] && line[i - 1][ft_strlen(line[i - 1])
-		- 1] == '\n')
-		line[i - 1][ft_strlen(line[i - 1]) - 1] = '\0';
-	if (i != 2 || *path)
+	if (!line[1] || *path)
 	{
 		print_error(INVALID_TEXTURE_LINE);
 		return (-1);
 	}
-	if (!validate_texture_file(line[1]))
+	
+	trimmed_line = line[1];
+	len = ft_strlen(trimmed_line);
+	if (len > 0 && trimmed_line[len - 1] == '\n')
+		trimmed_line[len - 1] = '\0';
+	
+	if (!validate_texture_file(trimmed_line))
 		return (-1);
-	*path = ft_strdup(line[1]);
+	*path = ft_strdup(trimmed_line);
 	map->textures_loaded |= (1 << texture_index);
 	return (0);
 }

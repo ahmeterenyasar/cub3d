@@ -15,7 +15,7 @@ int	flood_fill(t_map *map, int x, int y, char **visited)
 		return (0);
 	// buraya bi bakçaz boşluk işlemeyle ilgili sıkıntılar var.
 	if (current_char == '0' || current_char == 'N' || current_char == 'S'
-		|| current_char == 'E' || current_char == 'W' || current_char == ' ')
+		|| current_char == 'E' || current_char == 'W')
 	{
 		visited[y][x] = '1';
 		if (flood_fill(map, x + 1, y, visited) == -1)
@@ -26,6 +26,10 @@ int	flood_fill(t_map *map, int x, int y, char **visited)
 			return (-1);
 		if (flood_fill(map, x, y - 1, visited) == -1)
 			return (-1);
+	}
+	else if (current_char == ' ')
+	{
+		return (-1);
 	}
 	return (0);
 }

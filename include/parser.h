@@ -20,6 +20,12 @@ typedef struct s_img
 	char		*path;
 }				t_img;
 
+typedef struct s_cam
+{
+	int			plane_x; //0
+	int			plane_y; //0.66 -> 66 derece FOV
+}				t_cam;
+
 typedef struct s_color
 {
 	int			r;
@@ -31,8 +37,8 @@ typedef struct s_player
 {
 	int			player_x;
 	int			player_y;
-	int			rot_x;
-	int			rot_y;
+	int			dir_x;
+	int			dir_y;
 	char		direction;
 	int			player_count;
 }				t_player;

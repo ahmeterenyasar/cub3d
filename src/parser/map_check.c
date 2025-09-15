@@ -42,9 +42,14 @@ char	**create_map_copy(t_map *map)
 			return (NULL);
 		}
 		j = 0;
-		while (j < map->map_width)
+		while (j < (int)ft_strlen(map->map_copy[i]))
 		{
 			visited_map[i][j] = map->map_copy[i][j];
+			j++;
+		}
+		while (j < map->map_width)
+		{
+			visited_map[i][j] = ' ';
 			j++;
 		}
 		visited_map[i][j] = '\0';
@@ -56,8 +61,9 @@ char	**create_map_copy(t_map *map)
 int	validate_all_empty_spaces(t_map *map)
 {
 	char	current_char;
+	int		x;
+	int		y;
 
-	int x, y;
 	y = 0;
 	while (y < map->map_height)
 	{
@@ -67,11 +73,9 @@ int	validate_all_empty_spaces(t_map *map)
 			current_char = map->map_copy[y][x];
 			if (current_char == '0' || current_char == 'N'
 				|| current_char == 'S' || current_char == 'E'
-				|| current_char == 'W' || current_char == ' ')
+				|| current_char == 'W')
 			{
 				if (is_at_map_edge(map, x, y))
-					return (-1);
-				if (has_open_corner(map, x, y))
 					return (-1);
 			}
 			x++;

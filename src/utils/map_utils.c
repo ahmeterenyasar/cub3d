@@ -47,39 +47,25 @@ int	is_map_line(char *line)
 
 int	is_at_map_edge(t_map *map, int x, int y)
 {
+	// Check if at map boundaries
 	if (y == 0 || y == map->map_height - 1)
 		return (1);
-	if (x == 0)
+	if (x == 0 || x >= (int)ft_strlen(map->map_copy[y]) - 1)
 		return (1);
-	if (x >= (int)ft_strlen(map->map_copy[y]) - 1)
+	
+	// Check adjacent cells for spaces or out of bounds
+	if (y > 0 && (x >= (int)ft_strlen(map->map_copy[y - 1]) 
+		|| map->map_copy[y - 1][x] == ' '))
 		return (1);
-	if (y > 0 && x >= (int)ft_strlen(map->map_copy[y - 1]))
+	if (y < map->map_height - 1 && (x >= (int)ft_strlen(map->map_copy[y + 1])
+		|| map->map_copy[y + 1][x] == ' '))
 		return (1);
-	if (y < map->map_height - 1 && x >= (int)ft_strlen(map->map_copy[y + 1]))
+	if (x > 0 && map->map_copy[y][x - 1] == ' ')
 		return (1);
+	if (x < (int)ft_strlen(map->map_copy[y]) - 1 && map->map_copy[y][x + 1] == ' ')
+		return (1);
+	
 	return (0);
 }
 
-int	has_open_corner(t_map *map, int x, int y)
-{
-	int	dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};
-	int	dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
-	int	i;
 
-	int nx, ny;
-	i = 0;
-	while (i < 8)
-	{
-		nx = x + dx[i];
-		ny = y + dy[i];
-		if (ny < 0 || ny >= map->map_height || nx < 0)
-			return (1);
-		if (nx >= (int)ft_strlen(map->map_copy[ny]))
-			return (1);
-		// added
-		if (map->map_copy[ny][nx] == ' ')
-			return (1);
-		i++;
-	}
-	return (0);
-}
