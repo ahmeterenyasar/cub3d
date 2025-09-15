@@ -43,23 +43,22 @@ int	handle_map_parsing(t_map *map, char *line)
 int	process_element_line(t_map *map, char **split)
 {
 	if (ft_strncmp(split[0], "NO", 2) == 0 && ft_strlen(split[0]) == 2)
-		take_texture_path(&map->img[0].path, split, 0, map);
+		return (take_texture_path(&map->img[0].path, split, 0, map));
 	else if (ft_strncmp(split[0], "SO", 2) == 0 && ft_strlen(split[0]) == 2)
-		take_texture_path(&map->img[1].path, split, 1, map);
+		return (take_texture_path(&map->img[1].path, split, 1, map));
 	else if (ft_strncmp(split[0], "WE", 2) == 0 && ft_strlen(split[0]) == 2)
-		take_texture_path(&map->img[2].path, split, 2, map);
+		return (take_texture_path(&map->img[2].path, split, 2, map));
 	else if (ft_strncmp(split[0], "EA", 2) == 0 && ft_strlen(split[0]) == 2)
-		take_texture_path(&map->img[3].path, split, 3, map);
+		return (take_texture_path(&map->img[3].path, split, 3, map));
 	else if (ft_strncmp(split[0], "F", 1) == 0 && ft_strlen(split[0]) == 1)
-		take_color_values(&map->floor_color, split, 0, map);
+		return (take_color_values(&map->floor_color, split, 0, map));
 	else if (ft_strncmp(split[0], "C", 1) == 0 && ft_strlen(split[0]) == 1)
-		take_color_values(&map->ceiling_color, split, 1, map);
+		return (take_color_values(&map->ceiling_color, split, 1, map));
 	else
 	{
 		print_error(INVALID_FILE_VAR);
 		return (-1);
 	}
-	return (0);
 }
 
 int	status_control(t_map *map, char *map_line)

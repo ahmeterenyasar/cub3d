@@ -1,6 +1,6 @@
 #include "../../include/cub3d.h"
 
-void	take_texture_path(char **path, char **line, int texture_index,
+int	take_texture_path(char **path, char **line, int texture_index,
 		t_map *map)
 {
 	int	i;
@@ -14,10 +14,11 @@ void	take_texture_path(char **path, char **line, int texture_index,
 	if (i != 2 || *path)
 	{
 		print_error(INVALID_TEXTURE_LINE);
-		return ;
+		return (-1);
 	}
 	*path = ft_strdup(line[1]);
 	map->textures_loaded |= (1 << texture_index);
+	return (0);
 }
 
 int	parse_rgb_values(char *rgb_string, t_color *color)
@@ -46,7 +47,7 @@ int	parse_rgb_values(char *rgb_string, t_color *color)
 	return (1);
 }
 
-void	take_color_values(t_color *color, char **line, int color_type,
+int	take_color_values(t_color *color, char **line, int color_type,
 		t_map *map)
 {
 	int	i;
@@ -60,12 +61,13 @@ void	take_color_values(t_color *color, char **line, int color_type,
 	if (i != 2 || (color->r != -1))
 	{
 		print_error(INVALID_COLOR_LINE);
-		return ;
+		return (-1);
 	}
 	if (!parse_rgb_values(line[1], color))
 	{
 		print_error(INVALID_RGB);
-		return ;
+		return (-1);
 	}
 	map->colors_loaded |= (1 << color_type);
+	return (0);
 }

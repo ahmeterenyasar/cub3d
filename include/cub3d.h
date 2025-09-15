@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igurses <igurses@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:56:03 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/15 15:13:01 by igurses          ###   ########.fr       */
+/*   Updated: 2025/09/15 18:56:40 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ int		process_element_line(t_map *map, char **split);
 
 /*Texture And RGB*/
 int		parse_rgb_values(char *rgb_string, t_color *color);
-void	take_texture_path(char **path, char **line, int texture_index,
+int		take_texture_path(char **path, char **line, int texture_index,
 			t_map *map);
-void	take_color_values(t_color *color, char **line, int color_type,
+int		take_color_values(t_color *color, char **line, int color_type,
 			t_map *map);
 
 /*Flood Fill*/
