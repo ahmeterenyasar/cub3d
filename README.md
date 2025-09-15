@@ -24,8 +24,6 @@ make
 - Add key event handling (WASD, arrow keys, ESC)
 
 ### Known Issues 🔴
-- Division of map with "\n" is unacceptable
-- Empt map section in file still proccessed as succesful. Player position is declared.
 
 ### In Progress 🟡
 - Parser implementation
