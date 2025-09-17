@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: igurses <igurses@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:56:03 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/17 13:14:05 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/17 16:54:07 by igurses          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "../src/utils/get_next_line/get_next_line.h"
 # include "../src/utils/libft/libft.h"
-# include "parser.h"
 # include "graphics.h"
+# include "parser.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -92,6 +92,11 @@ int		is_valid_rgb(int value);
 int		skip_whitespace(char *line);
 int		is_valid_map_char(char c);
 void	remove_eof(char *line);
+int		ft_strlen_split(char **split);
+char	*ft_strjoin_split(char **split, int start);
+void	free_split_with_index(char **split, int i);
+void	control_split_count(char **split);
+void	helper_map_copy(int j, t_map *map, char **visited_map, int i);
 
 /* Free */
 void	free_split(char **split);

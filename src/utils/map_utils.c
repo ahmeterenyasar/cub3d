@@ -68,4 +68,18 @@ int	is_at_map_edge(t_map *map, int x, int y)
 	return (0);
 }
 
+void	helper_map_copy(int j, t_map *map, char **visited_map, int i)
+{
+	while (j < (int)ft_strlen(map->map_copy[i]))
+	{
+		visited_map[i][j] = map->map_copy[i][j];
+		j++;
+	}
+	while (j < map->map_width)
+	{
+		visited_map[i][j] = ' ';
+		j++;
+	}
+}
+
 

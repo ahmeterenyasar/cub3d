@@ -39,6 +39,7 @@ SRCS = main.c \
        $(SRC_DIR)/utils/debug.c \
        $(SRC_DIR)/utils/map_utils.c \
        $(SRC_DIR)/utils/player_utils.c \
+	   $(SRC_DIR)/utils/rgb_utils.c \
 	   $(SRC_DIR)/parser/parser.c \
 	   $(SRC_DIR)/parser/init_data.c \
 	   $(SRC_DIR)/parser/status_control.c \

@@ -42,8 +42,8 @@ typedef struct s_player
 	double		plane_y;
 	char		direction;
 	int			player_count;
-	int			player_x;  // Grid coordinates for parsing
-	int			player_y;  // Grid coordinates for parsing
+	int player_x; // Grid coordinates for parsing
+	int player_y; // Grid coordinates for parsing
 }				t_player;
 
 typedef struct s_map
@@ -53,7 +53,7 @@ typedef struct s_map
 	int			map_height;
 	int			map_width;
 	char		*clean_line;
-	int map_started; // Flag to track if map parsing has begun
+	int 		map_started; // Flag to track if map parsing has begun
 	int			map_is_ready;
 	t_player	*player;
 	t_img img[4]; // NO, SO, WE, EA

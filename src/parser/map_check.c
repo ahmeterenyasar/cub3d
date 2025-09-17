@@ -21,6 +21,7 @@ int	find_player(t_map *map)
 	return (0);
 }
 
+
 char	**create_map_copy(t_map *map)
 {
 	char	**visited_map;
@@ -36,22 +37,11 @@ char	**create_map_copy(t_map *map)
 		visited_map[i] = malloc(sizeof(char) * (map->map_width + 1));
 		if (!visited_map[i])
 		{
-			while (--i >= 0)
-				free(visited_map[i]);
-			free(visited_map);
+			free_visited_array(visited_map, i);
 			return (NULL);
 		}
 		j = 0;
-		while (j < (int)ft_strlen(map->map_copy[i]))
-		{
-			visited_map[i][j] = map->map_copy[i][j];
-			j++;
-		}
-		while (j < map->map_width)
-		{
-			visited_map[i][j] = ' ';
-			j++;
-		}
+		helper_map_copy(j, map, visited_map, i);
 		visited_map[i][j] = '\0';
 		i++;
 	}

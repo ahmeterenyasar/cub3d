@@ -52,7 +52,6 @@ int	take_texture_path(char **path, char **line, int texture_index, t_map *map)
 		print_error(INVALID_TEXTURE_LINE);
 		return (-1);
 	}
-	
 	trimmed_line = line[1];
 	len = ft_strlen(trimmed_line);
 	if (len > 0 && trimmed_line[len - 1] == '\n')
@@ -96,14 +95,11 @@ int	take_color_values(t_color *color, char **line, int color_type, t_map *map)
 	int	i;
 
 	i = 0;
-	printf("Taking color values for color type %s\n", line[1]);
 	while (line[i])
 		i++;
-	printf("Taking color values for color type2: %s i: %d\n", line[1], i);
 	if (i >= 2 && line[i - 1] && line[i - 1][ft_strlen(line[i - 1])
 		- 1] == '\n')
 		line[i - 1][ft_strlen(line[i - 1]) - 1] = '\0';
-	printf("Taking color values for color type2: %s i: %d color->r: %d\n", line[1], i,color->r);
 	if (i != 2 || (color->r != -1))
 	{
 		print_error(INVALID_COLOR_LINE);

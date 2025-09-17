@@ -56,11 +56,7 @@ int	add_map_line(t_map *map, char ***map_copy, int *map_height)
 int	read_map(int fd, t_map *map)
 {
 	int		status;
-	char	**map_copy;
-	int		map_height;
 
-	map_copy = NULL;
-	map_height = 0;
 	while (1)
 	{
 		map->map_line = get_next_line(fd);
@@ -69,7 +65,7 @@ int	read_map(int fd, t_map *map)
 		status = status_control(map, map->map_line);
 		if (status == 1)
 		{
-			if (add_map_line(map, &map_copy, &map_height) == -1)
+			if (add_map_line(map, &map->map_copy, &map->map_height) == -1)
 			{
 				free(map->map_line);
 				return (-1);
@@ -82,8 +78,6 @@ int	read_map(int fd, t_map *map)
 		}
 		free(map->map_line);
 	}
-	map->map_copy = map_copy;
-	map->map_height = map_height;
 	return (0);
 }
 
@@ -113,7 +107,5 @@ int	parser(char **argv, t_map *map)
 	if (process_map(map) == -1)
 		return (-1);
 	close(fd);
-	debug_print_all_data(map);
-	print_map_copy(map->map_copy, map->map_height);
 	return (0);
 }
