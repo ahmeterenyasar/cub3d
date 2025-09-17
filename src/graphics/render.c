@@ -25,9 +25,11 @@ static void	draw_ceiling_and_floor(t_game *game)
 	int	floor_color;
 
 	ceiling_color = create_rgb_color(game->map->ceiling_color.r,
-			game->map->ceiling_color.g, game->map->ceiling_color.b);
+										game->map->ceiling_color.g,
+										game->map->ceiling_color.b);
 	floor_color = create_rgb_color(game->map->floor_color.r,
-			game->map->floor_color.g, game->map->floor_color.b);
+									game->map->floor_color.g,
+									game->map->floor_color.b);
 	y = 0;
 	while (y < WINDOW_HEIGHT / 2)
 	{

@@ -49,8 +49,3 @@ void	init_player(t_player *player)
 	player->direction = '\0';
 	player->player_count = 0;
 }
-
-// void init_img(t_image *image)
-// {
-
-// }

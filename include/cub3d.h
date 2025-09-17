@@ -101,6 +101,7 @@ void	helper_map_copy(int j, t_map *map, char **visited_map, int i);
 /* Free */
 void	free_split(char **split);
 void	free_visited_array(char **visited, int height);
+void	free_map_data(t_map *map);
 
 /* Debug */
 void	debug_print_all_data(t_map *map);

@@ -34,6 +34,8 @@ int	handle_keypress(int keycode, t_game *game)
 int	handle_close(t_game *game)
 {
 	cleanup_graphics(game);
+	free_map_data(game->map);
+	free(game->map);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

@@ -97,11 +97,23 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
+	{
+		if (save)
+		{
+			free(save);
+			save = NULL;
+		}
 		return (NULL);
+	}
 	save = ft_read_and_save(fd, save);
 	if (!save)
 		return (NULL);
 	line = ft_set_line(save);
 	save = ft_save(save);
 	return (line);
+}
+
+void	cleanup_get_next_line(void)
+{
+	get_next_line(-1);
 }

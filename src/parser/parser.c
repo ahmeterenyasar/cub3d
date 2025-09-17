@@ -55,7 +55,7 @@ int	add_map_line(t_map *map, char ***map_copy, int *map_height)
 
 int	read_map(int fd, t_map *map)
 {
-	int		status;
+	int	status;
 
 	while (1)
 	{
@@ -68,12 +68,14 @@ int	read_map(int fd, t_map *map)
 			if (add_map_line(map, &map->map_copy, &map->map_height) == -1)
 			{
 				free(map->map_line);
+				cleanup_get_next_line();
 				return (-1);
 			}
 		}
 		else if (status == -1)
 		{
 			free(map->map_line);
+			cleanup_get_next_line();
 			return (-1);
 		}
 		free(map->map_line);
@@ -93,19 +95,27 @@ int	parser(char **argv, t_map *map)
 	}
 	if (read_map(fd, map) == -1)
 	{
+		cleanup_get_next_line();
 		close(fd);
 		return (-1);
 	}
 	if (!validate_all_elements_loaded(map))
+	{
+		cleanup_get_next_line();
 		return (-1);
+	}
 	if (!map->map_is_ready || map->map_height == 0)
 	{
 		print_error(INVALID_MAP);
+		cleanup_get_next_line();
 		close(fd);
 		return (-1);
 	}
 	if (process_map(map) == -1)
+	{
+		cleanup_get_next_line();
 		return (-1);
+	}
 	close(fd);
 	return (0);
 }

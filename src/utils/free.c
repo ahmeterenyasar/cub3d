@@ -31,3 +31,44 @@ void	free_visited_array(char **visited, int height)
 	}
 	free(visited);
 }
+
+void	free_map_data(t_map *map)
+{
+	int	i;
+
+	if (!map)
+		return ;
+	
+	// Free texture paths
+	i = 0;
+	while (i < 4)
+	{
+		if (map->img[i].path)
+		{
+			free(map->img[i].path);
+			map->img[i].path = NULL;
+		}
+		i++;
+	}
+	
+	// Free map copy (2D array)
+	if (map->map_copy)
+	{
+		i = 0;
+		while (i < map->map_height)
+		{
+			if (map->map_copy[i])
+				free(map->map_copy[i]);
+			i++;
+		}
+		free(map->map_copy);
+		map->map_copy = NULL;
+	}
+	
+	// Free player
+	if (map->player)
+	{
+		free(map->player);
+		map->player = NULL;
+	}
+}

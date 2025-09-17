@@ -1,4 +1,4 @@
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 int	is_valid_texture_extension(char *path)
 {
@@ -56,7 +56,6 @@ int	take_texture_path(char **path, char **line, int texture_index, t_map *map)
 	len = ft_strlen(trimmed_line);
 	if (len > 0 && trimmed_line[len - 1] == '\n')
 		trimmed_line[len - 1] = '\0';
-	
 	if (!validate_texture_file(trimmed_line))
 		return (-1);
 	*path = ft_strdup(trimmed_line);

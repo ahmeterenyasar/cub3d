@@ -21,7 +21,6 @@ int	find_player(t_map *map)
 	return (0);
 }
 
-
 char	**create_map_copy(t_map *map)
 {
 	char	**visited_map;

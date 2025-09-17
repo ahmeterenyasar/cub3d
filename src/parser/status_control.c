@@ -1,4 +1,4 @@
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 int	handle_empty_line(t_map *map, char *line)
 {

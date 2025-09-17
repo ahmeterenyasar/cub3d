@@ -13,11 +13,13 @@ int	main(int argc, char **argv)
 	init_data(map);
 	if (!validate_arguments(argc, argv))
 	{
+		free_map_data(map);
 		free(map);
 		return (EXIT_FAILURE);
 	}
 	if (parser(argv, map) == -1)
 	{
+		free_map_data(map);
 		free(map);
 		return (EXIT_FAILURE);
 	}
@@ -27,6 +29,7 @@ int	main(int argc, char **argv)
 	if (init_graphics(&game, map) == -1)
 	{
 		print_error("Error\nFailed to initialize graphics");
+		free_map_data(map);
 		free(map);
 		return (EXIT_FAILURE);
 	}
@@ -35,8 +38,7 @@ int	main(int argc, char **argv)
 	mlx_loop(game.mlx);
 	/* Clean up memory */
 	cleanup_graphics(&game);
-	if (map->player)
-		free(map->player);
+	free_map_data(map);
 	free(map);
 	return (EXIT_SUCCESS);
 }

@@ -12,8 +12,6 @@
 
 #include "cub3d.h"
 
-
-
 void	init_player_direction(t_player *player)
 {
 	if (player->direction == 'N')

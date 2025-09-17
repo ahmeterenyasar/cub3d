@@ -27,5 +27,6 @@ char	*get_next_line(int fd);
 char	*ft_set_line(char *save);
 char	*ft_save(char *save);
 char	*ft_read_and_save(int fd, char *save);
+void	cleanup_get_next_line(void);
 
 #endif
