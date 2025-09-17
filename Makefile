@@ -16,7 +16,7 @@ NAME = cub3D
 # Compiler and flags
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
-INCLUDES = -I./include -I$(LIBFT_DIR) -I$(GNL_DIR)
+INCLUDES = -I./include -I$(LIBFT_DIR) -I$(GNL_DIR) -I$(MLX_DIR)
 
 # Directories
 SRC_DIR = src
@@ -24,9 +24,12 @@ OBJ_DIR = obj
 INC_DIR = include
 LIBFT_DIR = src/utils/libft
 GNL_DIR = src/utils/get_next_line
+MLX_DIR = minilibx-linux
 
 # Libraries
 LIBFT = $(LIBFT_DIR)/libft.a
+MLX = $(MLX_DIR)/libmlx.a
+MLX_FLAGS = -lXext -lX11 -lm -lbsd
 
 # Source files
 SRCS = main.c \
@@ -42,6 +45,11 @@ SRCS = main.c \
 	   $(SRC_DIR)/parser/map_check.c \
 	   $(SRC_DIR)/parser/texture_and_rgb.c \
 	   $(SRC_DIR)/parser/flood_fill.c \
+	   $(SRC_DIR)/graphics/graphics.c \
+	   $(SRC_DIR)/graphics/events.c \
+	   $(SRC_DIR)/graphics/render.c \
+	   $(SRC_DIR)/graphics/player_movement.c \
+	   $(SRC_DIR)/graphics/raycasting.c
 
 
 # Get Next Line files
@@ -65,9 +73,13 @@ $(LIBFT):
 	@echo "$(BLUE)Building libft...$(NC)"
 	@make -C $(LIBFT_DIR)
 
-$(NAME): $(LIBFT) $(OBJS) $(GNL_OBJS)
+$(MLX):
+	@echo "$(BLUE)Building minilibx...$(NC)"
+	@make -C $(MLX_DIR)
+
+$(NAME): $(LIBFT) $(MLX) $(OBJS) $(GNL_OBJS)
 	@echo "$(BLUE)Linking $(NAME)...$(NC)"
-	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(LIBFT) -L$(MLX_DIR) -lmlx $(MLX_FLAGS) -o $(NAME)
 	@echo "$(GREEN)$(NAME) compiled successfully!$(NC)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -89,6 +101,7 @@ clean:
 	@echo "$(RED)Cleaning object files...$(NC)"
 	@rm -rf $(OBJ_DIR)
 	@make -C $(LIBFT_DIR) clean
+	@make -C $(MLX_DIR) clean
 
 fclean: clean
 	@echo "$(RED)Cleaning $(NAME)...$(NC)"

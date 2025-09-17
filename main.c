@@ -1,26 +1,41 @@
 
 #include "include/cub3d.h"
+#include "include/graphics.h"
 
 int	main(int argc, char **argv)
 {
-	t_map *map;
+	t_map	*map;
+	t_game	game;
 	
 	map = malloc(sizeof(t_map));
 	if (!map)
 		return (EXIT_FAILURE);
 	init_data(map);
-	/* Validate arguments and file */
 	if (!validate_arguments(argc, argv))
+	{
+		free(map);
 		return (EXIT_FAILURE);
+	}
+	if (parser(argv, map) == -1)
+	{
+		free(map);
+		return (EXIT_FAILURE);
+	}
 
-	/* Parse the .cub file */
-	parser(argv, map);
+	/* Initialize graphics */
+	if (init_graphics(&game, map) == -1)
+	{
+		print_error("Error\nFailed to initialize graphics");
+		free(map);
+		return (EXIT_FAILURE);
+	}
 
-	
-	/* TODO: Initialize graphics */
-	/* TODO: Start game loop */
+	/* Start game loop */
+	mlx_loop_hook(game.mlx, render_frame, &game);
+	mlx_loop(game.mlx);
 	
 	/* Clean up memory */
+	cleanup_graphics(&game);
 	if (map->player)
 		free(map->player);
 	free(map);

@@ -1,5 +1,6 @@
 
-#include "../../include/cub3d.h"
+#include "graphics.h"
+#include "cub3d.h"
 
 int	check_player_count(int player_count)
 {
@@ -18,13 +19,15 @@ int	check_player_count(int player_count)
 
 void	check_is_player(t_map *map, int x, int y)
 {
-	if (map->map_copy[y][x] == 'N' || map->map_copy[y][x] == 'S'
-		|| map->map_copy[y][x] == 'E' || map->map_copy[y][x] == 'W')
+	char current_char = map->map_copy[y][x];
+	
+	if (current_char == 'N' || current_char == 'S'
+		|| current_char == 'E' || current_char == 'W')
 	{
 		map->player->player_count++;
 		map->player->player_x = x;
 		map->player->player_y = y;
-		map->player->direction = map->map_copy[y][x];
+		map->player->direction = current_char;
 		map->map_copy[y][x] = '0';
 	}
 }

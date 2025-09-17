@@ -13,17 +13,16 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-# include <stdio.h>
-
 typedef struct s_img
 {
 	char		*path;
 }				t_img;
 
+// unused
 typedef struct s_cam
 {
-	int			plane_x; //0
-	int			plane_y; //0.66 -> 66 derece FOV
+	int plane_x; // 0
+	int plane_y; // 0.66 -> 66 derece FOV
 }				t_cam;
 
 typedef struct s_color
@@ -35,12 +34,16 @@ typedef struct s_color
 
 typedef struct s_player
 {
-	int			player_x;
-	int			player_y;
-	int			dir_x;
-	int			dir_y;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
 	char		direction;
 	int			player_count;
+	int			player_x;  // Grid coordinates for parsing
+	int			player_y;  // Grid coordinates for parsing
 }				t_player;
 
 typedef struct s_map

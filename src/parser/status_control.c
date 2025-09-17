@@ -7,6 +7,7 @@ int	handle_empty_line(t_map *map, char *line)
 	if (!line)
 		return (-1);
 	i = skip_whitespace(line);
+	printf("Empty line,: %s\n", line);
 	if (!line[i] || line[i] == '\n' || line[i] == '\r')
 	{
 		if (map->map_started)
@@ -65,6 +66,12 @@ int	status_control(t_map *map, char *map_line)
 	char	**split;
 	int		empty_result;
 	int		map_result;
+	// char	**trimmed_line;
+	// /*
+	// trimmed_line = ft_strtrim(map_line, "F,' ',\t,\n,\r");
+	// if (!trimmed_line)
+	// 	return (-1);
+	// */
 
 	empty_result = handle_empty_line(map, map_line);
 	if (empty_result <= 0)

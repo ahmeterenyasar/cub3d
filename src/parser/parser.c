@@ -1,5 +1,5 @@
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 char	**resize_map_array(char **old_map, int old_height)
 {

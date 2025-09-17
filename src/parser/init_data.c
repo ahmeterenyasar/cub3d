@@ -1,5 +1,5 @@
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 void	init_texture_data(t_map *map)
 {
@@ -40,8 +40,12 @@ void	init_player(t_player *player)
 {
 	player->player_x = -1;
 	player->player_y = -1;
-	player->dir_x = 0;
-	player->dir_y = 0;
+	player->pos_x = 0.0;
+	player->pos_y = 0.0;
+	player->dir_x = 0.0;
+	player->dir_y = 0.0;
+	player->plane_x = 0.0;
+	player->plane_y = 0.0;
 	player->direction = '\0';
 	player->player_count = 0;
 }

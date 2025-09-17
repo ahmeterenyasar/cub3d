@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:56:03 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/15 19:41:03 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/17 13:14:05 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../src/utils/get_next_line/get_next_line.h"
 # include "../src/utils/libft/libft.h"
 # include "parser.h"
+# include "graphics.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -67,45 +68,37 @@ int		process_element_line(t_map *map, char **split);
 int		parse_rgb_values(char *rgb_string, t_color *color);
 int		take_texture_path(char **path, char **line, int texture_index,
 			t_map *map);
-int		take_color_values(t_color *color, char **line, int color_type,
-			t_map *map);
 int		is_valid_texture_extension(char *path);
 int		is_texture_accessible(char *path);
 int		validate_texture_file(char *path);
+int		take_color_values(t_color *color, char **line, int color_type,
+			t_map *map);
 
-/*Flood Fill*/
-int		flood_fill(t_map *map, int x, int y, char **visited);
-
-/* Map Processing */
-int		process_map(t_map *map);
+/* Map Check */
 int		find_player(t_map *map);
 int		validate_map_walls(t_map *map);
-int		validate_all_empty_spaces(t_map *map);
-char	**create_map_copy(t_map *map);
+int		process_map(t_map *map);
+int		flood_fill(t_map *map, int x, int y, char **visited);
 
-/* Utils*/
+/* Utils */
+void	find_width(char *line, t_map *map);
+int		validate_all_elements_loaded(t_map *map);
+int		is_map_line(char *line);
+int		is_at_map_edge(t_map *map, int x, int y);
+int		check_player_count(int player_count);
+void	check_is_player(t_map *map, int x, int y);
 int		ft_strlen_for_map(char *map);
 int		is_valid_rgb(int value);
 int		skip_whitespace(char *line);
-int		is_map_line(char *line);
+int		is_valid_map_char(char c);
 void	remove_eof(char *line);
 
-/* Map Utils*/
-int		is_valid_map_char(char c);
-void	find_width(char *line, t_map *map);
-int		validate_all_elements_loaded(t_map *map);
-int		is_at_map_edge(t_map *map, int x, int y);
-
-/*Player Utils*/
-int		check_player_count(int player_count);
-void	check_is_player(t_map *map, int x, int y);
-
-/*Debug*/
-void	print_map_copy(char **map_copy, int map_height);
-void	debug_print_all_data(t_map *map);
-
-/*Free*/
+/* Free */
 void	free_split(char **split);
 void	free_visited_array(char **visited, int height);
+
+/* Debug */
+void	debug_print_all_data(t_map *map);
+void	print_map_copy(char **map_copy, int map_height);
 
 #endif
