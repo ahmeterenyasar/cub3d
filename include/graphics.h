@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 00:00:00 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/17 13:15:40 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/18 14:26:50 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int		render_frame(t_game *game);
 void	put_pixel(t_game *game, int x, int y, int color);
 
 /* Raycasting */
-void	cast_rays(t_game *game);
 void	raycasting(t_game *game);
 
 /* Player Movement */

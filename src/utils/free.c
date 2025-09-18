@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/18 14:09:34 by ayasar            #+#    #+#             */
+/*   Updated: 2025/09/18 15:20:48 by ayasar           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
@@ -32,14 +42,10 @@ void	free_visited_array(char **visited, int height)
 	free(visited);
 }
 
-void	free_map_data(t_map *map)
+void	free_img_paths(t_map *map)
 {
 	int	i;
 
-	if (!map)
-		return ;
-	
-	// Free texture paths
 	i = 0;
 	while (i < 4)
 	{
@@ -50,8 +56,12 @@ void	free_map_data(t_map *map)
 		}
 		i++;
 	}
-	
-	// Free map copy (2D array)
+}
+
+void	free_map_copy(t_map *map)
+{
+	int	i;
+
 	if (map->map_copy)
 	{
 		i = 0;
@@ -64,11 +74,22 @@ void	free_map_data(t_map *map)
 		free(map->map_copy);
 		map->map_copy = NULL;
 	}
-	
-	// Free player
+}
+
+void	free_player(t_map *map)
+{
 	if (map->player)
 	{
 		free(map->player);
 		map->player = NULL;
 	}
+}
+
+void	free_map_data(t_map *map)
+{
+	if (!map)
+		return ;
+	free_img_paths(map);
+	free_map_copy(map);
+	free_player(map);
 }

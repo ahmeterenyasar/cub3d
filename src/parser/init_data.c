@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_data.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/18 15:02:42 by ayasar            #+#    #+#             */
+/*   Updated: 2025/09/18 15:32:26 by ayasar           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -48,4 +59,22 @@ void	init_player(t_player *player)
 	player->plane_y = 0.0;
 	player->direction = '\0';
 	player->player_count = 0;
+}
+
+void	init_img(t_game *game, t_map *map)
+{
+	int	i;
+
+	game->map = map;
+	game->mlx = NULL;
+	game->win = NULL;
+	game->img = NULL;
+	game->addr = NULL;
+	i = 0;
+	while (i < 4)
+	{
+		game->textures[i].img = NULL;
+		game->textures[i].addr = NULL;
+		i++;
+	}
 }

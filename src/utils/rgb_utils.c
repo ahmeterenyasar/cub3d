@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rgb_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/18 14:05:12 by ayasar            #+#    #+#             */
+/*   Updated: 2025/09/18 14:05:32 by ayasar           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 int	ft_strlen_split(char **split)
@@ -44,9 +56,10 @@ void	free_split_with_index(char **split, int i)
 		i++;
 	}
 }
-void control_split_count(char **split)
+
+void	control_split_count(char **split)
 {
-	char *temp;
+	char	*temp;
 
 	if (ft_strlen_split(split) > 2)
 	{

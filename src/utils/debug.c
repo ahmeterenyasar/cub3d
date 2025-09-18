@@ -1,4 +1,16 @@
-#include "../../include/cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   debug.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/18 14:10:02 by ayasar            #+#    #+#             */
+/*   Updated: 2025/09/18 15:32:25 by ayasar           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
 
 void	debug_print_all_data(t_map *map)
 {
@@ -17,7 +29,7 @@ void	debug_print_all_data(t_map *map)
 }
 void	print_map_copy(char **map_copy, int map_height)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < map_height)

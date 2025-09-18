@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igurses <igurses@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:56:03 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/17 16:54:07 by igurses          ###   ########.fr       */
+/*   Updated: 2025/09/18 15:32:25 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,20 @@ void	print_error(char *message);
 
 /* Parser */
 int		parser(char **argv, t_map *map);
+int		validate_parsed_data(t_map *map, int fd);
 int		add_map_line(t_map *map, char ***map_copy, int *map_height);
 int		read_map(int fd, t_map *map);
+int		handle_map_line_error(char *map_line);
+int		process_map_line(t_map *map, int status);
 char	*prepare_clean_line(char *original_line);
 char	**resize_map_array(char **old_map, int old_height);
 
 /* Init */
 void	init_data(t_map *map);
 void	init_player(t_player *player);
+void	init_img(t_game *game, t_map *map);
+int		init_img_and_addr(t_game *game);
+int		init_mlx_and_win(t_game *game);
 
 /* Status Check */
 int		status_control(t_map *map, char *map_line);
@@ -101,6 +107,8 @@ void	helper_map_copy(int j, t_map *map, char **visited_map, int i);
 /* Free */
 void	free_split(char **split);
 void	free_visited_array(char **visited, int height);
+void	free_img_paths(t_map *map);
+void	free_map_copy(t_map *map);
 void	free_map_data(t_map *map);
 
 /* Debug */

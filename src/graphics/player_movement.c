@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igurses <igurses@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 00:00:00 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/17 16:07:21 by igurses          ###   ########.fr       */
+/*   Updated: 2025/09/18 14:25:41 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_player_direction(t_player *player)
+void	direction_n_and_s(t_player *player)
 {
 	if (player->direction == 'N')
 	{
@@ -28,7 +28,11 @@ void	init_player_direction(t_player *player)
 		player->plane_x = -0.66;
 		player->plane_y = 0.0;
 	}
-	else if (player->direction == 'E')
+}
+
+void	direction_w_and_e(t_player *player)
+{
+	if (player->direction == 'E')
 	{
 		player->dir_x = 1.0;
 		player->dir_y = 0.0;
@@ -42,6 +46,12 @@ void	init_player_direction(t_player *player)
 		player->plane_x = 0.0;
 		player->plane_y = -0.66;
 	}
+}
+
+void	init_player_direction(t_player *player)
+{
+	direction_n_and_s(player);
+	direction_w_and_e(player);
 	player->pos_x = (double)player->player_x + 0.5;
 	player->pos_y = (double)player->player_y + 0.5;
 }

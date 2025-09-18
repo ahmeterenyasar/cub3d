@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 00:00:00 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/17 13:10:35 by ayasar           ###   ########.fr       */
+/*   Created: 2025/09/18 14:57:42 by ayasar            #+#    #+#             */
+/*   Updated: 2025/09/18 15:12:53 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,20 @@ static void	calculate_wall_distance(t_ray *ray, t_game *game)
 		ray->draw_end = WINDOW_HEIGHT - 1;
 }
 
-static void	calculate_texture_info(t_ray *ray, t_game *game)
+static void	determine_texture_number(t_ray *ray)
 {
-	int	tex_width;
-
 	if (ray->side == 0 && ray->ray_dir_x > 0)
-		ray->tex_num = 3; // EA
+		ray->tex_num = 3;
 	else if (ray->side == 0 && ray->ray_dir_x < 0)
-		ray->tex_num = 2; // WE
+		ray->tex_num = 2;
 	else if (ray->side == 1 && ray->ray_dir_y > 0)
-		ray->tex_num = 1; // SO
+		ray->tex_num = 1;
 	else
-		ray->tex_num = 0; // NO
+		ray->tex_num = 0;
+}
+
+static void	calculate_wall_position(t_ray *ray, t_game *game)
+{
 	if (ray->side == 0)
 		ray->wall_x = game->map->player->pos_y + ray->perp_wall_dist
 			* ray->ray_dir_y;
@@ -117,6 +119,12 @@ static void	calculate_texture_info(t_ray *ray, t_game *game)
 		ray->wall_x = game->map->player->pos_x + ray->perp_wall_dist
 			* ray->ray_dir_x;
 	ray->wall_x -= floor(ray->wall_x);
+}
+
+static void	calculate_texture_coordinates(t_ray *ray, t_game *game)
+{
+	int	tex_width;
+
 	tex_width = game->textures[ray->tex_num].width;
 	ray->tex_x = (int)(ray->wall_x * (double)tex_width);
 	if (ray->side == 0 && ray->ray_dir_x > 0)
@@ -126,6 +134,13 @@ static void	calculate_texture_info(t_ray *ray, t_game *game)
 	ray->step = 1.0 * game->textures[ray->tex_num].height / ray->line_height;
 	ray->tex_pos = (ray->draw_start - WINDOW_HEIGHT / 2 + ray->line_height / 2)
 		* ray->step;
+}
+
+static void	calculate_texture_info(t_ray *ray, t_game *game)
+{
+	determine_texture_number(ray);
+	calculate_wall_position(ray, game);
+	calculate_texture_coordinates(ray, game);
 }
 
 static int	get_texture_color(t_game *game, int tex_num, int tex_x, int tex_y)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/18 14:07:55 by ayasar            #+#    #+#             */
+/*   Updated: 2025/09/18 15:32:25 by ayasar           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	find_width(char *line, t_map *map)
@@ -45,26 +57,27 @@ int	is_map_line(char *line)
 	return (1);
 }
 
+/*
+	Check if at map boundaries
+	Check adjacent cells for spaces or out of bounds
+*/
 int	is_at_map_edge(t_map *map, int x, int y)
 {
-	// Check if at map boundaries
 	if (y == 0 || y == map->map_height - 1)
 		return (1);
 	if (x == 0 || x >= (int)ft_strlen(map->map_copy[y]) - 1)
 		return (1);
-	
-	// Check adjacent cells for spaces or out of bounds
-	if (y > 0 && (x >= (int)ft_strlen(map->map_copy[y - 1]) 
-		|| map->map_copy[y - 1][x] == ' '))
+	if (y > 0 && (x >= (int)ft_strlen(map->map_copy[y - 1]) || map->map_copy[y
+				- 1][x] == ' '))
 		return (1);
 	if (y < map->map_height - 1 && (x >= (int)ft_strlen(map->map_copy[y + 1])
-		|| map->map_copy[y + 1][x] == ' '))
+			|| map->map_copy[y + 1][x] == ' '))
 		return (1);
 	if (x > 0 && map->map_copy[y][x - 1] == ' ')
 		return (1);
-	if (x < (int)ft_strlen(map->map_copy[y]) - 1 && map->map_copy[y][x + 1] == ' ')
+	if (x < (int)ft_strlen(map->map_copy[y]) - 1 && map->map_copy[y][x
+		+ 1] == ' ')
 		return (1);
-	
 	return (0);
 }
 
@@ -81,5 +94,3 @@ void	helper_map_copy(int j, t_map *map, char **visited_map, int i)
 		j++;
 	}
 }
-
-

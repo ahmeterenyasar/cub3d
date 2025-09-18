@@ -1,44 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/18 14:58:04 by ayasar            #+#    #+#             */
+/*   Updated: 2025/09/18 15:31:30 by ayasar           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "include/cub3d.h"
-#include "include/graphics.h"
 
 int	main(int argc, char **argv)
 {
 	t_map	*map;
 	t_game	game;
-	
+
 	map = malloc(sizeof(t_map));
 	if (!map)
 		return (EXIT_FAILURE);
 	init_data(map);
-	if (!validate_arguments(argc, argv))
+	if (!validate_arguments(argc, argv) || parser(argv, map) == -1
+		|| init_graphics(&game, map) == -1)
 	{
 		free_map_data(map);
 		free(map);
 		return (EXIT_FAILURE);
 	}
-	if (parser(argv, map) == -1)
-	{
-		free_map_data(map);
-		free(map);
-		return (EXIT_FAILURE);
-	}
-	debug_print_all_data(map);
-	print_map_copy(map->map_copy, map->map_height);
-	/* Initialize graphics */
-	if (init_graphics(&game, map) == -1)
-	{
-		print_error("Error\nFailed to initialize graphics");
-		free_map_data(map);
-		free(map);
-		return (EXIT_FAILURE);
-	}
-	/* Start game loop */
 	mlx_loop_hook(game.mlx, render_frame, &game);
 	mlx_loop(game.mlx);
-	/* Clean up memory */
 	cleanup_graphics(&game);
-	free_map_data(map);
-	free(map);
 	return (EXIT_SUCCESS);
 }
