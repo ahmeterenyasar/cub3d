@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 14:09:34 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/18 15:20:48 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/18 17:17:11 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,15 @@ void	free_map_copy(t_map *map)
 	}
 }
 
-void	free_player(t_map *map)
-{
-	if (map->player)
-	{
-		free(map->player);
-		map->player = NULL;
-	}
-}
-
 void	free_map_data(t_map *map)
 {
 	if (!map)
 		return ;
 	free_img_paths(map);
 	free_map_copy(map);
-	free_player(map);
+	if (map->player)
+	{
+		free(map->player);
+		map->player = NULL;
+	}
 }

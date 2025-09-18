@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:56:03 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/18 15:32:25 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/18 17:17:11 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int		parser(char **argv, t_map *map);
 int		validate_parsed_data(t_map *map, int fd);
 int		add_map_line(t_map *map, char ***map_copy, int *map_height);
 int		read_map(int fd, t_map *map);
-int		handle_map_line_error(char *map_line);
 int		process_map_line(t_map *map, int status);
 char	*prepare_clean_line(char *original_line);
 char	**resize_map_array(char **old_map, int old_height);
@@ -61,8 +60,12 @@ char	**resize_map_array(char **old_map, int old_height);
 void	init_data(t_map *map);
 void	init_player(t_player *player);
 void	init_img(t_game *game, t_map *map);
+int		init_graphics(t_game *game, t_map *map);
 int		init_img_and_addr(t_game *game);
 int		init_mlx_and_win(t_game *game);
+int		init_img_and_addr(t_game *game);
+int		init_mlx_and_win(t_game *game);
+void	init_ray(t_ray *ray, t_game *game, int x);
 
 /* Status Check */
 int		status_control(t_map *map, char *map_line);
@@ -79,6 +82,7 @@ int		is_texture_accessible(char *path);
 int		validate_texture_file(char *path);
 int		take_color_values(t_color *color, char **line, int color_type,
 			t_map *map);
+
 
 /* Map Check */
 int		find_player(t_map *map);
@@ -115,4 +119,10 @@ void	free_map_data(t_map *map);
 void	debug_print_all_data(t_map *map);
 void	print_map_copy(char **map_copy, int map_height);
 
+/* Calculation */
+void	calculate_step_and_side_dist(t_ray *ray, t_game *game);
+void	perform_dda(t_ray *ray, t_game *game);
+void	calculate_wall_distance(t_ray *ray, t_game *game);
+void	calculate_wall_position(t_ray *ray, t_game *game);
+void	calculate_texture_coordinates(t_ray *ray, t_game *game);
 #endif

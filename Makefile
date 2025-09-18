@@ -46,12 +46,16 @@ SRCS = main.c \
 	   $(SRC_DIR)/parser/map_check.c \
 	   $(SRC_DIR)/parser/texture_and_rgb.c \
 	   $(SRC_DIR)/parser/flood_fill.c \
+	   $(SRC_DIR)/parser/prepare_line.c \
+	   $(SRC_DIR)/parser/validate_texture_file.c \
 	   $(SRC_DIR)/graphics/graphics.c \
 	   $(SRC_DIR)/graphics/events.c \
 	   $(SRC_DIR)/graphics/render.c \
 	   $(SRC_DIR)/graphics/player_movement.c \
-	   $(SRC_DIR)/graphics/raycasting.c
-
+	   $(SRC_DIR)/graphics/raycasting.c \
+	   $(SRC_DIR)/graphics/direction_and_rotation.c \
+	   $(SRC_DIR)/graphics/init_graphics.c \
+	   $(SRC_DIR)/graphics/calculations.c \
 
 # Get Next Line files
 GNL_SRCS = $(GNL_DIR)/get_next_line.c \
