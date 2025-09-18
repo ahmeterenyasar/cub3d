@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:56:03 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/18 17:17:11 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/18 18:17:50 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int		is_texture_accessible(char *path);
 int		validate_texture_file(char *path);
 int		take_color_values(t_color *color, char **line, int color_type,
 			t_map *map);
-
 
 /* Map Check */
 int		find_player(t_map *map);

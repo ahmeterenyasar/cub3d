@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 14:26:27 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/18 15:23:36 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/18 17:45:36 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	flood_fill(t_map *map, int x, int y, char **visited)
 		if (flood_fill(map, x, y - 1, visited) == -1)
 			return (-1);
 	}
-	else if (current_char == ' ')
+	else if (current_char == ' ' || current_char == '\t')
 		return (-1);
 	return (0);
 }

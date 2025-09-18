@@ -36,7 +36,6 @@ SRCS = main.c \
        $(SRC_DIR)/utils/validate_arguments.c \
        $(SRC_DIR)/utils/utils.c \
        $(SRC_DIR)/utils/free.c \
-       $(SRC_DIR)/utils/debug.c \
        $(SRC_DIR)/utils/map_utils.c \
        $(SRC_DIR)/utils/player_utils.c \
 	   $(SRC_DIR)/utils/rgb_utils.c \
