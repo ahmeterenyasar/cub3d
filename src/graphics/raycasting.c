@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 14:57:42 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/18 16:51:27 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/21 17:28:20 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ static void	draw_wall_stripe(t_game *game, t_ray *ray, int x)
 		tex_y = (int)ray->tex_pos % tex_height;
 		ray->tex_pos += ray->step;
 		color = get_texture_color(game, ray->tex_num, ray->tex_x, tex_y);
-		if (ray->side == 1)
-			color = ((color >> 1) & 8355711);
 		put_pixel(game, x, y, color);
 		y++;
 	}

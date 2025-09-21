@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 16:56:03 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/18 16:56:05 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/21 17:27:29 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,7 @@ void	calculate_texture_coordinates(t_ray *ray, t_game *game)
 
 	tex_width = game->textures[ray->tex_num].width;
 	ray->tex_x = (int)(ray->wall_x * (double)tex_width);
-	if (ray->side == 0 && ray->ray_dir_x > 0)
-		ray->tex_x = tex_width - ray->tex_x - 1;
-	if (ray->side == 1 && ray->ray_dir_y < 0)
+	if (ray->tex_num == 1 || ray->tex_num == 2)
 		ray->tex_x = tex_width - ray->tex_x - 1;
 	ray->step = 1.0 * game->textures[ray->tex_num].height / ray->line_height;
 	ray->tex_pos = (ray->draw_start - WINDOW_HEIGHT / 2 + ray->line_height / 2)

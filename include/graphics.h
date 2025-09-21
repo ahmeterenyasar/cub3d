@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 00:00:00 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/18 14:26:50 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/21 17:23:24 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define GRAPHICS_H
 
 # include "../minilibx-linux/mlx.h"
-# include "parser.h"
+# include "struct.h"
 # include <math.h>
 
-# define WINDOW_WIDTH 1024
-# define WINDOW_HEIGHT 768
+# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT 1080
 # define WINDOW_TITLE "cub3D"
 
 # define MOVE_SPEED 0.10

@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:56:03 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/18 18:17:50 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/21 17:02:40 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../src/utils/get_next_line/get_next_line.h"
 # include "../src/utils/libft/libft.h"
 # include "graphics.h"
-# include "parser.h"
+# include "struct.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -99,7 +99,6 @@ void	check_is_player(t_map *map, int x, int y);
 int		ft_strlen_for_map(char *map);
 int		is_valid_rgb(int value);
 int		skip_whitespace(char *line);
-int		is_valid_map_char(char c);
 void	remove_eof(char *line);
 int		ft_strlen_split(char **split);
 char	*ft_strjoin_split(char **split, int start);

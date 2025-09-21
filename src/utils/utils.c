@@ -6,7 +6,7 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 18:09:12 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/18 17:55:56 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/21 11:59:13 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,6 @@ int	skip_whitespace(char *line)
 	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\r'))
 		i++;
 	return (i);
-}
-
-int	is_valid_map_char(char c)
-{
-	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == ' ');
 }
 
 void	remove_eof(char *line)
