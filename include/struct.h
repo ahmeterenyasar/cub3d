@@ -6,12 +6,12 @@
 /*   By: ayasar <ayasar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 14:50:58 by ayasar            #+#    #+#             */
-/*   Updated: 2025/09/21 17:03:09 by ayasar           ###   ########.fr       */
+/*   Updated: 2025/09/21 17:37:07 by ayasar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT
-# define STRUCT
+#ifndef STRUCT_H
+# define STRUCT_H
 
 typedef struct s_img
 {
