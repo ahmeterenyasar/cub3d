@@ -76,7 +76,7 @@ void	raycasting(t_game *game)
 		init_ray(&ray, game, x);
 		calculate_step_and_side_dist(&ray, game);
 		perform_dda(&ray, game);
-		calculate_wall_distance(&ray, game);
+		calculate_wall_distance(&ray);
 		calculate_texture_info(&ray, game);
 		draw_wall_stripe(game, &ray, x);
 		x++;

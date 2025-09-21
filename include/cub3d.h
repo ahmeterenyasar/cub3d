@@ -120,7 +120,7 @@ void	print_map_copy(char **map_copy, int map_height);
 /* Calculation */
 void	calculate_step_and_side_dist(t_ray *ray, t_game *game);
 void	perform_dda(t_ray *ray, t_game *game);
-void	calculate_wall_distance(t_ray *ray, t_game *game);
+void	calculate_wall_distance(t_ray *ray);
 void	calculate_wall_position(t_ray *ray, t_game *game);
 void	calculate_texture_coordinates(t_ray *ray, t_game *game);
 #endif

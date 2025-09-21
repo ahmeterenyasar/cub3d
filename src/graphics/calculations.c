@@ -61,14 +61,12 @@ void	perform_dda(t_ray *ray, t_game *game)
 	}
 }
 
-void	calculate_wall_distance(t_ray *ray, t_game *game)
+void	calculate_wall_distance(t_ray *ray)
 {
 	if (ray->side == 0)
-		ray->perp_wall_dist = (ray->map_x - game->map->player->pos_x + (1
-					- ray->step_x) / 2) / ray->ray_dir_x;
+		ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
 	else
-		ray->perp_wall_dist = (ray->map_y - game->map->player->pos_y + (1
-					- ray->step_y) / 2) / ray->ray_dir_y;
+		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
 	ray->line_height = (int)(WINDOW_HEIGHT / ray->perp_wall_dist);
 	ray->draw_start = -ray->line_height / 2 + WINDOW_HEIGHT / 2;
 	if (ray->draw_start < 0)
